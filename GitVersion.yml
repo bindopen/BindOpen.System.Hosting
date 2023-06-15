@@ -1,0 +1,7 @@
+next-version: 1.1
+assembly-versioning-scheme: MajorMinorPatch
+mode: ContinuousDelivery
+tag-prefix: '[vV]'
+major-version-bump-message: '.*(#breaking|#major).*'
+minor-version-bump-message: '.*(#feature|#minor).*'
+patch-version-bump-message: '.*(#fix|#patch).*'
