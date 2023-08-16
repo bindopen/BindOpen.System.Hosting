@@ -24,7 +24,7 @@ namespace BindOpen.System.Hosting.Settings
         /// </summary>
         public BdoSettings()
         {
-            Configuration = BdoMeta.NewConfig();
+            Configuration = BdoData.NewConfig();
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace BindOpen.System.Hosting.Settings
                 if (attribute is not null)
                 {
                     Configuration.Add(
-                        BdoMeta.NewScalar(
+                        BdoData.NewMetaScalar(
                             attribute.Name,
                             propertyInfo.PropertyType.GetValueType(),
                             value));

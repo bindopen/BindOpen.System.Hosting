@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Connectors;
+﻿using BindOpen.System.Scoping;
 using Microsoft.Extensions.Configuration;
 
 namespace BindOpen.System.Data.Stores
@@ -28,7 +27,7 @@ namespace BindOpen.System.Data.Stores
                     depot.Add(
                         BdoData.NewDatasource(section.Key, DatasourceKind.Database)
                             .With(
-                                BdoMeta.NewConfig()
+                                BdoData.NewMetaObject()
                                     .WithConnectionString(section.Value)));
                 }
             };
