@@ -1,7 +1,7 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Stores;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
@@ -38,7 +38,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The depot sets of this instance.
         /// </summary>
-        IBdoDataStore DataStore { get; set; }
+        IBdoDepotStore DepotStore { get; set; }
 
         // Settings ----------------------
 
@@ -63,7 +63,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The logger of this instance.
         /// </summary>
-        public Func<IBdoHost, ILogger> LoggerInit { get; set; }
+        public Func<IBdoHost, IBdoLogger> LoggerInit { get; set; }
 
         // Trigger actions -------------------------------------------
 

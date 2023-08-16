@@ -33,7 +33,7 @@ namespace BindOpen.System.Hosting
         {
             var host = BdoData.New<BdoHost>().WithLog(log);
             host.Configure(setupAction);
-            host.Start();
+
             return host;
         }
     }

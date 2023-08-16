@@ -1,8 +1,8 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Stores;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
@@ -143,25 +143,9 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// Adds the specified logger.
         /// </summary>
-        /// <param key="factory">The logger factory to consider.</param>
-        /// <returns>Returns the options option.</returns>
-        public static T SetLogger<T>(this T options, ILoggerFactory factory)
-            where T : IBdoHostOptions
-        {
-            if (options != null)
-            {
-                options.LoggerInit = _ => factory.CreateLogger<IBdoHost>();
-            }
-
-            return options;
-        }
-
-        /// <summary>
-        /// Adds the specified logger.
-        /// </summary>
         /// <param key="initLogger">The logger initialization to consider.</param>
         /// <returns>Returns the options option.</returns>
-        public static T SetLogger<T>(this T options, Func<IBdoHost, ILogger> initLogger)
+        public static T SetLogger<T>(this T options, Func<IBdoHost, IBdoLogger> initLogger)
             where T : IBdoHostOptions
         {
             if (options != null)
@@ -272,13 +256,13 @@ namespace BindOpen.System.Hosting.Hosts
         /// Adds the data store executing the specified action.
         /// </summary>
         /// <param key="action">The action to execute on the created data store.</param>
-        public static T AddDataStore<T>(this T options, Action<IBdoDataStore> action = null)
+        public static T AddDepotStore<T>(this T options, Action<IBdoDepotStore> action = null)
             where T : IBdoHostOptions
         {
             if (options != null)
             {
-                options.DataStore ??= new BdoDataStore();
-                action?.Invoke(options.DataStore);
+                options.DepotStore ??= BdoData.NewDepotStore();
+                action?.Invoke(options.DepotStore);
             }
 
             return options;
