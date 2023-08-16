@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data;
+using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
 using BindOpen.System.Processing;
 using BindOpen.System.Scoping;
@@ -60,8 +61,6 @@ namespace BindOpen.System.Hosting.Hosts
             Log?.Sanitize();
 
             Log?.AddEvent(EventKinds.Message, "Host starting...");
-
-            Initialize();
 
             if (State == ProcessExecutionState.Pending)
             {
@@ -128,8 +127,10 @@ namespace BindOpen.System.Hosting.Hosts
         /// Initializes information.
         /// </summary>
         /// <returns>Returns the log of the task.</returns>
-        protected virtual void Initialize()
+        protected virtual bool Initialize()
         {
+            var loaded = true;
+
             // we determine the root folder path
 
             var rootFolderPathDefinition = Options?.RootFolderPathDefinitions?.FirstOrDefault(p => p.Predicate(Options) == true);
@@ -140,18 +141,19 @@ namespace BindOpen.System.Hosting.Hosts
 
             // we update options (specially paths)
 
-            //Options.Update();
+            Options.Update();
 
             // we set the logger
 
-            //Log.WithLogger(Options.LoggerInit?.Invoke(this));
+            Log.WithLogger(Options.LoggerInit?.Invoke(this));
 
             // we launch the standard initialization of service
+
             var log = Log?.InsertChild(EventKinds.Message, "Initializing host...");
 
             IBdoLog childLog = null;
 
-            Context.AddSystemItem("bdoHost", this);
+            DataStore.Add(("$host", this));
 
             // if no errors was found
 
@@ -195,11 +197,10 @@ namespace BindOpen.System.Hosting.Hosts
 
                     childLog = log?.InsertChild(EventKinds.Message, "Loading extensions...");
 
-                    this.LoadExtensions(
+                    loaded &= this.LoadExtensions(
                         q => q = Options.ExtensionLoadOptions
                             .AddSource(DatasourceKind.Repository, this.GetKnownPath(BdoHostPathKind.LibraryFolder)),
                         childLog);
-                    State = !childLog.HasEvent(EventKinds.Exception, EventKinds.Error) ? ProcessExecutionState.Pending : ProcessExecutionState.Ended;
 
                     if (State == ProcessExecutionState.Pending)
                     {
@@ -207,26 +208,20 @@ namespace BindOpen.System.Hosting.Hosts
 
                         Clear();
 
-                        if (Options?.DataStore != null)
-                        {
-                            foreach (var dataStore in Options.DataStore.Depots)
-                            {
-                                DataStore.Add(dataStore.Value);
-                            }
-                        }
+                        DepotStore = Options?.DepotStore;
 
                         childLog = log?.InsertChild(EventKinds.Message, "Loading data store...");
-                        if (DataStore == null)
+                        if (DepotStore == null)
                         {
                             childLog?.AddEvent(EventKinds.Message, title: "No data store registered");
                         }
                         else
                         {
-                            DataStore.LoadLazy(this, childLog);
+                            loaded &= DepotStore.LoadLazy(this, childLog);
 
                             if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                             {
-                                childLog?.AddEvent(EventKinds.Message, "Data store loaded (" + DataStore.Depots.Count + " depots added)");
+                                childLog?.AddEvent(EventKinds.Message, "Data store loaded (" + DepotStore.Depots.Count + " depots added)");
                             }
                         }
                     }
@@ -239,6 +234,10 @@ namespace BindOpen.System.Hosting.Hosts
                 {
                 }
             }
+
+            State = loaded ? ProcessExecutionState.Pending : ProcessExecutionState.Ended;
+
+            return loaded;
         }
 
         #endregion

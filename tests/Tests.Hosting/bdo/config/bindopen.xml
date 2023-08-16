@@ -1,0 +1,29 @@
+﻿<bindopen xmlns="https://docs.bindopen.org/xsd">
+
+  <scalar name="applicationInstanceName">dev@corporation-ui</scalar>
+  <scalar name="logs.expirationDayNumber">10</scalar>
+
+  <scalar name="executionLevel">Development</scalar>
+  <scalar name="runtime.folderPath">
+    <script>{{$(application.folderPath)}}\bdo</script>
+  </scalar>
+  <scalar name="configuration.folderPath">
+    <script>{{$(runtime.folderPath)}}\bdo\config</script>
+  </scalar>
+  <scalar name="library.folderPath">
+    <script>{{$(runtime.folderPath)}}\bdo\lib</script>
+  </scalar>
+  <scalar name="logs.folderPath">
+    <script>{{$(runtime.folderPath)}}\bdo\logs</script>
+  </scalar>
+  <scalar name="logs.fileName">
+    <script>log_{{$(timestamp)_$(id)}}.txt</script>
+  </scalar>
+  <scalar name="logs.exirationDayNumber">
+    <script>10</script>
+  </scalar>
+  <scalar name="packages.folderPath">
+    <script>{{$(runtime.folderPath)}}\bdo\packages</script>
+  </scalar>
+
+</bindopen>

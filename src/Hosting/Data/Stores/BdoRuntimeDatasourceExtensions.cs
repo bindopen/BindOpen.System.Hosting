@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Stores;
 
 namespace BindOpen.System.Data.Stores
 {

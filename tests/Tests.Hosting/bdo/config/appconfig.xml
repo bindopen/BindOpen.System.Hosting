@@ -1,0 +1,47 @@
+﻿<app.config xmlns="https://docs.bindopen.org/xsd">
+
+  <scalar name="reCaptcha.publicKey" value="publicKey" />
+  <scalar name="reCaptcha.secretKey" value="secretKey" />
+
+  <collection name="resources.news.atom.uris">
+    <scalar name="daily" value="dailyA" />
+    <scalar name="releases" value="releasesA" />
+  </collection>
+
+  <credentials>
+    <credential name="crendential1">
+      <domainId>bindopen.com</domainId>
+      <login>userA@bindopen.org</login>
+      <password>passwordC</password>
+    </credential>
+    <credential name="crendential2">
+      <login>userB@bindopen.org</login>
+      <password>passwordB</password>
+    </credential>
+  </credentials>
+  
+  <dataSources>
+    <add name="smtp_default" kind="EmailServer">
+      <configuration definition="messages$smtp">
+        <scalar name="host" value="smtp.toto.com" />
+        <scalar name="port" valueType="Integer" value="587" />
+        <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="true" />
+        <scalar name="isSslEnabled" valueType="Boolean" value="true" />
+        <scalar name="timeout" valueType="Integer" value="60000" />
+        <scalar name="login" value="login" />
+        <scalar name="password" value="password" />
+      </configuration>
+    </add>
+    <add name="sphere.admin" kind="Database">
+      <configuration definition="database.mssqlserver$client">
+        <detail>
+          <scalar name="databaseKind" value="MSSqlServer" />
+        </detail>
+        <connectionString>
+          <![CDATA[connectionString]]>
+        </connectionString>
+      </configuration>
+    </add>
+  </dataSources>
+  
+</app.config>

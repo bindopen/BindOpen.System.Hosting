@@ -1,8 +1,8 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Stores;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
@@ -61,7 +61,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The logger initialization function of this instance.
         /// </summary>
-        public Func<IBdoHost, ILogger> LoggerInit { get; set; }
+        public Func<IBdoHost, IBdoLogger> LoggerInit { get; set; }
 
         // Trigger actions ----------------------
 
@@ -90,7 +90,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The data store of this instance.
         /// </summary>
-        public IBdoDataStore DataStore { get; set; }
+        public IBdoDepotStore DepotStore { get; set; }
 
         #endregion
 
@@ -132,7 +132,7 @@ namespace BindOpen.System.Hosting.Hosts
             }
 
             ExtensionLoadOptions?.Dispose();
-            DataStore?.Dispose();
+            DepotStore?.Dispose();
 
             _isDisposed = true;
 

@@ -30,9 +30,16 @@ namespace BindOpen.System.Tests.Hosting
         {
             get
             {
-                return _appHost ??= BdoHosting.NewHost(
+                _appHost ??= BdoHosting.NewHost(
                     options => options
                         .ThrowExceptionOnStartFailure());
+
+                if (_appHost != null)
+                {
+                    _appHost.Start();
+                }
+
+                return _appHost;
             }
         }
 
@@ -47,7 +54,7 @@ namespace BindOpen.System.Tests.Hosting
 
                 var builder = new ConfigurationBuilder()
                     .SetBasePath(AppHost?.GetKnownPath(BdoHostPathKind.RootFolder))
-                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                    .AddJsonFile(@"bdo\config\appsettings.json".ToPath(), optional: true, reloadOnChange: true);
 
                 return _netCoreConfiguration = builder.Build();
             }
