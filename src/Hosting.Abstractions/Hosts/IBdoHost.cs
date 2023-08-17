@@ -11,7 +11,7 @@ namespace BindOpen.System.Hosting.Hosts
     {
         ProcessExecutionState State { get; set; }
 
-        IBdoHostOptions Options { get; set; }
+        IBdoHostSettings Settings { get; set; }
 
         void Start();
 

@@ -4,27 +4,47 @@
         <name>BindOpen.System.Tests.Hosting</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.System.Tests.Hosting.AppHostTest">
+        <member name="T:BindOpen.System.Tests.Hosting.AppHostTests">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Tests.Hosting.AppHostTest.Setup">
+        <member name="M:BindOpen.System.Tests.Hosting.AppHostTests.Setup">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Tests.Hosting.AppHostTest.TestAppHost">
+        <member name="M:BindOpen.System.Tests.Hosting.AppHostTests.TestAppHost">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Tests.Hosting.AppHostTest.TestAppHostWithNoOptions">
+        <member name="M:BindOpen.System.Tests.Hosting.AppHostTests.TestAppHostWithNoOptions">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Tests.Hosting.AppHostTest.TestAppHostWithDatasources">
+        <member name="T:BindOpen.System.Tests.Hosting.DatasourcesTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.DatasourcesTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.DatasourcesTests.CreateDatasourceTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.DatasourcesTests.AddFromConnectionStringsTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.DatasourcesTests.AddFromConfigurationTest">
             <summary>
             
             </summary>
@@ -34,22 +54,22 @@
             This class set the global settings up.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Tests.Core.Settings.TestAppSettings">
+        <member name="T:BindOpen.System.Tests.Core.Settings.TestAppConfiguration">
             <summary>
             This class represents a test application settings.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Tests.Core.Settings.TestAppSettings.TestFolderPath">
+        <member name="P:BindOpen.System.Tests.Core.Settings.TestAppConfiguration.TestFolderPath">
             <summary>
             The test folder path of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Tests.Core.Settings.TestAppSettings.Uris">
+        <member name="P:BindOpen.System.Tests.Core.Settings.TestAppConfiguration.Uris">
             <summary>
             The URIs of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Tests.Core.Settings.TestAppSettings.#ctor">
+        <member name="M:BindOpen.System.Tests.Core.Settings.TestAppConfiguration.#ctor">
             <summary>
             Instantiates a new instance of the TestAppSettings class.
             </summary>
