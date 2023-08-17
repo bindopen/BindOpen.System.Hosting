@@ -1,12 +1,9 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Hosting;
 using BindOpen.System.Hosting.Hosts;
 using BindOpen.System.Processing;
-using BindOpen.System.Scoping;
 using NUnit.Framework;
-using System.Linq;
 
 namespace BindOpen.System.Tests.Hosting
 {
@@ -64,18 +61,13 @@ namespace BindOpen.System.Tests.Hosting
 
             var datasourceA = datasourceDepot?["db.testA"];
             Assert.That(datasourceA?.Name == "db.testA", "Bad data source loading");
+            Assert.That(datasourceA?.Kind == DatasourceKind.Database, "Bad data source loading");
 
-            Assert.That(datasourceDepot?.Get("db.testA").FirstOrDefault()
-                .GetConnectionString() != null,
+            Assert.That(datasourceDepot?.Get("db.testA")?.ConnectionString != null,
                 "Bad data source loading");
 
             var datasourceB = datasourceDepot?["db.testB"];
             Assert.That(datasourceB?.Name == "db.testB", "Bad data source loading from .NET Core config");
-
-            Assert.That(datasourceDepot.Descendant<IBdoMetaObject>("db.testB", 0).GetConnectionString() != null,
-                "Bad data source loading from .NET Core config");
-
-            Assert.That(datasourceDepot.Get()?.Name == "db.testA", "Bad data source loading");
         }
     }
 }

@@ -29,7 +29,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         /// <param key="action">The action to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public static T Run<T>(this T host, Action<IBdoHost> action)
+        public static T RunAction<T>(this T host, Action<IBdoHost> action)
             where T : IBdoHost
         {
             if (host != null)

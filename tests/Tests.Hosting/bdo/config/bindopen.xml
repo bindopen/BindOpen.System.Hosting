@@ -5,25 +5,25 @@
 
   <scalar name="executionLevel">Development</scalar>
   <scalar name="runtime.folderPath">
-    <script>{{$(application.folderPath)}}\bdo</script>
+    <ref>{{$(application.folderPath)}}\bdo</ref>
   </scalar>
   <scalar name="configuration.folderPath">
-    <script>{{$(runtime.folderPath)}}\bdo\config</script>
+    <ref>{{$(runtime.folderPath)}}\bdo\config</ref>
   </scalar>
   <scalar name="library.folderPath">
-    <script>{{$(runtime.folderPath)}}\bdo\lib</script>
+    <ref>{{$(runtime.folderPath)}}\bdo\lib</ref>
   </scalar>
   <scalar name="logs.folderPath">
-    <script>{{$(runtime.folderPath)}}\bdo\logs</script>
+    <ref>{{$(runtime.folderPath)}}\bdo\logs</ref>
   </scalar>
   <scalar name="logs.fileName">
-    <script>log_{{$(timestamp)_$(id)}}.txt</script>
+    <ref>log_{{$(timestamp)_$(id)}}.txt</ref>
   </scalar>
   <scalar name="logs.exirationDayNumber">
     <script>10</script>
   </scalar>
   <scalar name="packages.folderPath">
-    <script>{{$(runtime.folderPath)}}\bdo\packages</script>
+    <ref>{{$(runtime.folderPath)}}\bdo\packages</ref>
   </scalar>
 
 </bindopen>

@@ -180,7 +180,7 @@ namespace BindOpen.System.Hosting.Hosts
                     }
                     else
                     {
-                        childLog = log?.InsertChild(EventKinds.Message, "Loading host config...");
+                        childLog = log?.InsertChild(EventKinds.Message, "Loading host settings...");
                         //Options.Settings.UpdateFromFile(
                         //        hostConfigFilePath,
                         //        new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },

@@ -34,10 +34,7 @@ namespace BindOpen.System.Tests.Hosting
                     options => options
                         .ThrowExceptionOnStartFailure());
 
-                if (_appHost != null)
-                {
-                    _appHost.Start();
-                }
+                _appHost?.Start();
 
                 return _appHost;
             }
