@@ -13,12 +13,12 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         /// <param key="options"></param>
         /// <returns>Returns this instance.</returns>
-        public static T WithOptions<T>(this T host, IBdoHostOptions options)
+        public static T WithSettings<T>(this T host, IBdoHostSettings options)
             where T : IBdoHost
         {
             if (host != null)
             {
-                host.Options = options;
+                host.Settings = options;
             }
 
             return host;
@@ -55,13 +55,13 @@ namespace BindOpen.System.Hosting.Hosts
                 switch (pathKind)
                 {
                     case BdoHostPathKind.RootFolder:
-                        path = host.Options?.RootFolderPath;
+                        path = host.Settings?.RootFolderPath;
                         break;
                     case BdoHostPathKind.LibraryFolder:
-                        path = host.Options?.Settings?.LibraryFolderPath;
+                        path = host.Settings?.ConfigurationWrapper?.LibraryFolderPath;
                         if (string.IsNullOrEmpty(path))
                         {
-                            path = host.Options?.Settings?.LibraryFolderPath;
+                            path = host.Settings?.ConfigurationWrapper?.LibraryFolderPath;
                         }
                         if (string.IsNullOrEmpty(path))
                         {
@@ -69,7 +69,7 @@ namespace BindOpen.System.Hosting.Hosts
                         }
                         break;
                     case BdoHostPathKind.HostConfigFile:
-                        path = host.Options?.SettingsFilePath;
+                        path = host.Settings?.ConfigurationFilePath;
                         if (string.IsNullOrEmpty(path))
                         {
                             path = host.GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultHostConfigFileName;

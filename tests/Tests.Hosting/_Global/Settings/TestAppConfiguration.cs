@@ -1,5 +1,5 @@
 ﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Hosting.Settings;
+using BindOpen.System.Hosting.Hosts;
 using System.Collections.Generic;
 
 namespace BindOpen.System.Tests.Core.Settings
@@ -7,7 +7,7 @@ namespace BindOpen.System.Tests.Core.Settings
     /// <summary>
     /// This class represents a test application settings.
     /// </summary>
-    public class TestAppSettings : BdoSettings
+    public class TestAppConfiguration : BdoHostConfigWrapper
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -38,7 +38,7 @@ namespace BindOpen.System.Tests.Core.Settings
         /// <summary>
         /// Instantiates a new instance of the TestAppSettings class.
         /// </summary>
-        public TestAppSettings() : base()
+        public TestAppConfiguration() : base()
         {
         }
 

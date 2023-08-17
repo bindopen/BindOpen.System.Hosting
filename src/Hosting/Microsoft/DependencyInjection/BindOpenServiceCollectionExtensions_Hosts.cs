@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddBindOpen(
             this IServiceCollection services,
-            Action<IBdoHostOptions> setupAction = null,
+            Action<IBdoHostSettings> setupAction = null,
             IBdoLog log = null)
         {
             var host = BdoHosting.NewHost(setupAction, log);

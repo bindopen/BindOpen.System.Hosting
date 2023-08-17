@@ -1,5 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.IO.Dtos;
 using BindOpen.System.Logging;
 using BindOpen.System.Processing;
 using BindOpen.System.Scoping;
@@ -39,7 +40,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The options of this instance.
         /// </summary>
-        public IBdoHostOptions Options { get; set; }
+        public IBdoHostSettings Settings { get; set; }
 
         public ProcessExecutionState State { get; set; }
 
@@ -94,7 +95,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         private void StartSucceeds()
         {
-            Options?.Action_OnStartSuccess?.Invoke(this);
+            Settings?.Action_OnStartSuccess?.Invoke(this);
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         private void StartFails()
         {
-            Options?.Action_OnStartFailure?.Invoke(this);
+            Settings?.Action_OnStartFailure?.Invoke(this);
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         private void ExecutionSucceeds()
         {
-            Options?.Action_OnExecutionSucess?.Invoke(this);
+            Settings?.Action_OnExecutionSucess?.Invoke(this);
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         private void ExecutionFails()
         {
-            Options?.Action_OnExecutionFailure?.Invoke(this);
+            Settings?.Action_OnExecutionFailure?.Invoke(this);
         }
 
         // Paths --------------------------------------
@@ -133,19 +134,19 @@ namespace BindOpen.System.Hosting.Hosts
 
             // we determine the root folder path
 
-            var rootFolderPathDefinition = Options?.RootFolderPathDefinitions?.FirstOrDefault(p => p.Predicate(Options) == true);
+            var rootFolderPathDefinition = Settings?.RootFolderPathDefinitions?.FirstOrDefault(p => p.Predicate(Settings) == true);
             if (rootFolderPathDefinition != null)
             {
-                Options?.SetRootFolder(rootFolderPathDefinition?.RootFolderPath);
+                Settings?.SetRootFolder(rootFolderPathDefinition?.RootFolderPath);
             }
 
             // we update options (specially paths)
 
-            Options.Update();
+            Settings.Update();
 
             // we set the logger
 
-            Log.WithLogger(Options.LoggerInit?.Invoke(this));
+            Log.WithLogger(Settings.LoggerInit?.Invoke(this));
 
             // we launch the standard initialization of service
 
@@ -168,23 +169,23 @@ namespace BindOpen.System.Hosting.Hosts
                     if (!File.Exists(hostConfigFilePath))
                     {
                         var message = "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found";
-                        if (Options.IsSettingsFileRequired == true)
+                        if (Settings.IConfigurationFileRequired == true)
                         {
                             log?.AddEvent(EventKinds.Error, message);
                             State = ProcessExecutionState.Ended;
                         }
-                        else if (Options.IsSettingsFileRequired == false)
+                        else if (Settings.IConfigurationFileRequired == false)
                         {
                             log?.AddEvent(EventKinds.Warning, message);
                         }
                     }
                     else
                     {
-                        childLog = log?.InsertChild(EventKinds.Message, "Loading host settings...");
-                        //Options.Settings.UpdateFromFile(
-                        //        hostConfigFilePath,
-                        //        new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
-                        //        null, _scope, null).AddEventsTo(log);
+                        childLog = log?.InsertChild(EventKinds.Message, "Loading host configuration...");
+
+                        var config = XmlHelper.LoadXml<ConfigurationDto>(hostConfigFilePath).ToPoco();
+                        Settings.ConfigurationWrapper = BdoData.NewMetaWrapper<BdoHostConfigWrapper>(this, config);
+
                         if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                         {
                             childLog?.AddEvent(EventKinds.Message, "Host config loaded");
@@ -198,7 +199,7 @@ namespace BindOpen.System.Hosting.Hosts
                     childLog = log?.InsertChild(EventKinds.Message, "Loading extensions...");
 
                     loaded &= this.LoadExtensions(
-                        q => q = Options.ExtensionLoadOptions
+                        q => q = Settings.ExtensionLoadOptions
                             .AddSource(DatasourceKind.Repository, this.GetKnownPath(BdoHostPathKind.LibraryFolder)),
                         childLog);
 
@@ -208,7 +209,7 @@ namespace BindOpen.System.Hosting.Hosts
 
                         Clear();
 
-                        DepotStore = Options?.DepotStore;
+                        DepotStore = Settings?.DepotStore;
 
                         childLog = log?.InsertChild(EventKinds.Message, "Loading data store...");
                         if (DepotStore == null)

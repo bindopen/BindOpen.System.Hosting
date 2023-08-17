@@ -24,6 +24,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Hosts\Configuration\IBdoHostConfigWrapper.cs~RF1e569feb.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -39,8 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.Abstractions" Version="1.2.76" />
-    <PackageReference Include="BindOpen.System.Logging.Abstractions" Version="1.2.12" />
+    <PackageReference Include="BindOpen.System.Abstractions" Version="1.2.78" />
+    <PackageReference Include="BindOpen.System.Logging.Abstractions" Version="1.2.13" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
   </ItemGroup>
