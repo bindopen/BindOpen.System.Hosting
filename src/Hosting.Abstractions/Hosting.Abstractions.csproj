@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.Abstractions" Version="1.2.78" />
+    <PackageReference Include="BindOpen.System.Abstractions" Version="1.2.79" />
     <PackageReference Include="BindOpen.System.Logging.Abstractions" Version="1.2.13" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
