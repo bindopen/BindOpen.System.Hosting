@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Hosting.Hosts;
-using BindOpen.System.Logging;
 using System;
 
 namespace BindOpen.System.Hosting
@@ -16,22 +15,9 @@ namespace BindOpen.System.Hosting
         /// <param key="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static BdoHost NewHost(
-            IBdoLog log = null)
+            Action<IBdoHostSettings> setupAction = null)
         {
-            BdoHost host = NewHost(null, log);
-            return host;
-        }
-
-        /// <summary>
-        /// Adds a BindOpen host.
-        /// </summary>
-        /// <param key="setupAction">The setup action to consider.</param>
-        /// <returns></returns>
-        public static BdoHost NewHost(
-            Action<IBdoHostSettings> setupAction,
-            IBdoLog log = null)
-        {
-            var host = BdoData.New<BdoHost>().WithLog(log);
+            var host = BdoData.New<BdoHost>();
             host.Configure(setupAction);
 
             return host;

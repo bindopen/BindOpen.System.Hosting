@@ -12,19 +12,20 @@ namespace BindOpen.System.Hosting.Hosts
     /// </summary>
     public interface IBdoHostSettings : IBdoObject
     {
-        // Paths ----------------------
+        void Update();
+
+        // Root ----------------------
+
+        string RootFolderPath { get; }
 
         /// <summary>
         /// The root folder path.
         /// </summary>
-        string RootFolderPath { get; set; }
+        List<(Predicate<IBdoHostSettings> Predicate, string Path)> RootFolderPathAssignments { get; set; }
 
-        // -------
+        // Library ----------------------
 
-        /// <summary>
-        /// The root folder path.
-        /// </summary>
-        List<(Predicate<IBdoHostSettings> Predicate, string RootFolderPath)> RootFolderPathDefinitions { get; set; }
+        string LibraryFolderPath { get; set; }
 
         // Extensions ----------------------
 
@@ -40,23 +41,21 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         IBdoDepotStore DepotStore { get; set; }
 
-        // Settings ----------------------
+        // Configuration ----------------------
 
         /// <summary>
         /// The settings.
         /// </summary>
-        IBdoHostConfigWrapper ConfigurationWrapper { get; set; }
+        IBdoHostConfigWrapper Configuration { get; set; }
 
         /// <summary>
         /// The settings file path of this instance.
         /// </summary>
-        string ConfigurationFilePath { get; set; }
+        List<(string Path, bool IsRequired, ConfigurationFileExtenions FileKind)> ConfigurationFiles { get; set; }
 
-        /// <summary>
-        /// Indicates whether the host settings file must exist.
-        /// </summary>
-        /// <remarks>If it does not exist then an exception is thrown.</remarks>
-        bool? IConfigurationFileRequired { get; set; }
+        IBdoHostSettings SetConfiguration(Action<IBdoHostConfigWrapper> action = null);
+
+        IBdoHostSettings SetConfiguration<T>(Action<T> action = null) where T : class, IBdoHostConfigWrapper, new();
 
         // Loggers ----------------------
 
@@ -65,26 +64,8 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         public Func<IBdoHost, IBdoLogger> LoggerInit { get; set; }
 
-        // Trigger actions -------------------------------------------
+        // Trigger actions ----------------------
 
-        /// <summary>
-        /// The action that the start of this instance completes.
-        /// </summary>
-        public Action<IBdoHost> Action_OnStartSuccess { get; set; }
-
-        /// <summary>
-        /// The action that the start of this instance fails.
-        /// </summary>
-        public Action<IBdoHost> Action_OnStartFailure { get; set; }
-
-        /// <summary>
-        /// The action that this instance completes.
-        /// </summary>
-        public Action<IBdoHost> Action_OnExecutionSucess { get; set; }
-
-        /// <summary>
-        /// The action that is executed when the instance fails.
-        /// </summary>
-        public Action<IBdoHost> Action_OnExecutionFailure { get; set; }
+        public List<(HostEventKinds EventKind, Action<IBdoHost> _Action)> EventActions { get; set; }
     }
 }

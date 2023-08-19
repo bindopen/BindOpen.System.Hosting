@@ -58,21 +58,10 @@ namespace BindOpen.System.Hosting.Hosts
                         path = host.Settings?.RootFolderPath;
                         break;
                     case BdoHostPathKind.LibraryFolder:
-                        path = host.Settings?.ConfigurationWrapper?.LibraryFolderPath;
-                        if (string.IsNullOrEmpty(path))
-                        {
-                            path = host.Settings?.ConfigurationWrapper?.LibraryFolderPath;
-                        }
+                        path = host.Settings?.LibraryFolderPath;
                         if (string.IsNullOrEmpty(path))
                         {
                             path = host.GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultLibraryFolderPath;
-                        }
-                        break;
-                    case BdoHostPathKind.HostConfigFile:
-                        path = host.Settings?.ConfigurationFilePath;
-                        if (string.IsNullOrEmpty(path))
-                        {
-                            path = host.GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultHostConfigFileName;
                         }
                         break;
                 }

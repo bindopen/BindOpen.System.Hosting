@@ -3,50 +3,16 @@ using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Hosting.Hosts;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
 using System;
 using System.Collections.Generic;
 
 namespace BindOpen.System.Hosting
 {
     /// <summary>
-    /// This class represents a options options.
+    /// This class represents a settings settings.
     /// </summary>
     public static class BdoHostSettingsExtensions
     {
-        /// <summary>
-        /// Updates this instance.
-        /// </summary>
-        /// <param key="item">The item to consider.</param>
-        /// <param key="specificationAreas">The specification areas to consider.</param>
-        /// <param key="updateModes">The update modes to consider.</param>
-        /// <returns>The log of the operation.</returns>
-        /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
-        public static T Update<T>(this T options)
-            where T : IBdoHostSettings
-        {
-            if (options != null)
-            {
-                if (string.IsNullOrEmpty(options.RootFolderPath))
-                {
-                    options.RootFolderPath = FileHelper.GetAppRootFolderPath();
-                }
-                else
-                {
-                    options.RootFolderPath = options.RootFolderPath.GetConcatenatedPath(FileHelper.GetAppRootFolderPath()).EndingWith(@"\").ToPath();
-                }
-
-                options.ConfigurationFilePath = options.ConfigurationFilePath.GetConcatenatedPath(options.RootFolderPath).ToPath();
-
-                //Settings?.Update(null, null, log);
-                options.ConfigurationWrapper?.WithLibraryFolder(options.ConfigurationWrapper?.LibraryFolderPath.GetConcatenatedPath(options.RootFolderPath).EndingWith(@"\").ToPath());
-
-                options.ExtensionLoadOptions?.AddSource(DatasourceKind.Repository, options.ConfigurationWrapper?.LibraryFolderPath);
-            }
-
-            return options;
-        }
-
         // Paths -------------------------------------------
 
         /// <summary>
@@ -54,17 +20,17 @@ namespace BindOpen.System.Hosting
         /// </summary>
         /// <param key="predicate">The condition that must be satisfied.</param>
         /// <param key="rootFolderPath">The root folder path.</param>
-        /// <returns>Returns the options option.</returns>
-        public static T SetRootFolder<T>(this T options, Predicate<IBdoHostSettings> predicate, string rootFolderPath)
+        /// <returns>Returns the settings option.</returns>
+        public static T AddRootFolder<T>(this T settings, Predicate<IBdoHostSettings> predicate, string rootFolderPath)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.RootFolderPathDefinitions ??= new List<(Predicate<IBdoHostSettings> Predicate, string RootFolderPath)>();
-                options.RootFolderPathDefinitions.Add((predicate, rootFolderPath));
+                settings.RootFolderPathAssignments ??= new List<(Predicate<IBdoHostSettings> Predicate, string RootFolderPath)>();
+                settings.RootFolderPathAssignments.Add((predicate, rootFolderPath));
             }
 
-            return options;
+            return settings;
         }
 
         /// <summary>
@@ -72,71 +38,41 @@ namespace BindOpen.System.Hosting
         /// </summary>
         /// <param key="path">The path to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public static T SetRootFolder<T>(this T options, string path)
+        public static T SetRootFolder<T>(this T settings, string path)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.RootFolderPath = path?.EndingWith(@"\").ToPath();
+                settings.RootFolderPathAssignments ??= new List<(Predicate<IBdoHostSettings> Predicate, string RootFolderPath)>();
+                settings.RootFolderPathAssignments.Add((_ => true, path?.EndingWith(@"\").ToPath()));
             }
 
-            return options;
+            return settings;
         }
 
 
         // Settings -------------------------------------------
 
         /// <summary>
-        /// Sets the options settings applying action on it.
-        /// </summary>
-        /// <param key="optionsSettings">The options settings to consider.</param>
-        /// <param key="action">The action to apply on the settings.</param>
-        public static T SetConfiguration<T>(this T options, Action<IBdoHostConfigWrapper> action = null)
-            where T : IBdoHostSettings
-        {
-            if (options != null)
-            {
-                options.ConfigurationWrapper = new BdoHostConfigWrapper();
-                action?.Invoke(options.ConfigurationWrapper);
-            }
-
-            return options;
-        }
-
-
-        /// <summary>
-        /// Set the specified options settings file path.
+        /// Set the specified settings settings file path.
         /// </summary>
         /// <param key="path">The settings file path.</param>
-        /// <param key="isRequired">Indicates whether the options settings file is required.</param>
-        /// <returns>Returns the options option.</returns>
-        public static T SetConfigurationFile<T>(this T options, string path, bool? isRequired = false)
+        /// <param key="isRequired">Indicates whether the settings settings file is required.</param>
+        /// <returns>Returns the settings option.</returns>
+        public static T AddConfigurationFile<T>(
+            this T settings,
+            string path,
+            bool isRequired = false,
+            ConfigurationFileExtenions extension = ConfigurationFileExtenions.Any)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.ConfigurationFilePath = path?.ToPath();
-                options.SetConfigurationFile(isRequired);
+                settings.ConfigurationFiles ??= new();
+                settings.ConfigurationFiles.Add((path, isRequired, extension));
             }
 
-            return options;
-        }
-
-        /// <summary>
-        /// Set the specified options settings file path.
-        /// </summary>
-        /// <param key="path">The settings file path.</param>
-        /// <param key="isRequired">Indicates whether the options settings file is required.</param>
-        /// <returns>Returns the options option.</returns>
-        public static T SetConfigurationFile<T>(this T options, bool? isRequired)
-            where T : IBdoHostSettings
-        {
-            if (options != null)
-            {
-                options.IConfigurationFileRequired = isRequired;
-            }
-
-            return options;
+            return settings;
         }
 
         // Logs -------------------------------------------
@@ -145,16 +81,16 @@ namespace BindOpen.System.Hosting
         /// Adds the specified logger.
         /// </summary>
         /// <param key="initLogger">The logger initialization to consider.</param>
-        /// <returns>Returns the options option.</returns>
-        public static T SetLogger<T>(this T options, Func<IBdoHost, IBdoLogger> initLogger)
+        /// <returns>Returns the settings option.</returns>
+        public static T SetLogger<T>(this T settings, Func<IBdoHost, IBdoLogger> initLogger)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.LoggerInit = initLogger;
+                settings.LoggerInit = initLogger;
             }
 
-            return options;
+            return settings;
         }
 
         // Trigger actions -------------------------------------------
@@ -163,92 +99,92 @@ namespace BindOpen.System.Hosting
         /// The action that is executed when the start of this instance succedes.
         /// </summary>
         /// <param key="action">The action to execute.</param>
-        public static T ExecuteOnStartSuccess<T>(this T options, Action<IBdoHost> action)
+        public static T ExecuteOnInitSuccess<T>(this T settings, Action<IBdoHost> action)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.Action_OnStartSuccess = action;
+                settings.EventActions ??= new();
+                settings.EventActions.Add((HostEventKinds.OnInitSuccess, action));
             }
 
-            return options;
+            return settings;
         }
 
         /// <summary>
         /// The action that is executed when the start of this instance fails.
         /// </summary>
         /// <param key="action">The action to execute.</param>
-        public static T ExecuteOnStartFailure<T>(this T options, Action<IBdoHost> action)
+        public static T ExecuteOnInitFailure<T>(this T settings, Action<IBdoHost> action)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.Action_OnStartFailure = action;
+                settings.EventActions ??= new();
+                settings.EventActions.Add((HostEventKinds.OnInitFailure, action));
             }
 
-            return options;
+            return settings;
         }
 
         /// <summary>
         /// The action that is executed when this instance is successfully completed.
         /// </summary>
         /// <param key="action">The action to execute.</param>
-        public static T ExecuteOnExecutionSuccess<T>(this T options, Action<IBdoHost> action)
+        public static T ExecuteOnExecutionSuccess<T>(this T settings, Action<IBdoHost> action)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.Action_OnExecutionSucess = action;
+                settings.EventActions ??= new();
+                settings.EventActions.Add((HostEventKinds.OnExecutionSucess, action));
             }
 
-            return options;
+            return settings;
         }
 
         /// <summary>
         /// The action that is executed when this instance execution fails.
         /// </summary>
         /// <param key="action">The action to execute.</param>
-        public static T ExecuteOnExecutionFailure<T>(this T options, Action<IBdoHost> action)
+        public static T ExecuteOnExecutionFailure<T>(this T settings, Action<IBdoHost> action)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.Action_OnExecutionFailure = action;
+                settings.EventActions ??= new();
+                settings.EventActions.Add((HostEventKinds.OnExecutionFailure, action));
             }
 
-            return options;
+            return settings;
         }
 
         /// <summary>
         /// Throws an exception when start fails.
         /// </summary>
-        public static T ThrowExceptionOnStartFailure<T>(this T options, bool throwException = false)
+        public static T ThrowExceptionOnInitFailure<T>(this T settings, bool throwException = false)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.Action_OnStartFailure = throwException ?
-                (_ => throw new BdoHostLoadException("BindOpen options failed while loading"))
-                : null;
+                settings.ExecuteOnInitFailure(_ => throw new BdoHostLoadException("BindOpen settings failed while loading"));
             }
 
-            return options;
+            return settings;
         }
 
         /// <summary>
         /// Throws an exception when start fails.
         /// </summary>
-        public static T ThrowExceptionOnExecutionFailure<T>(this T options, bool throwException = false)
+        public static T ThrowExceptionOnExecutionFailure<T>(this T settings, bool throwException = false)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.Action_OnExecutionFailure = throwException ?
-                (_ => throw new BdoHostLoadException("BindOpen options failed while loading"))
-                : null;
+                settings.ExecuteOnExecutionFailure(_ => throw new BdoHostLoadException("BindOpen settings failed while loading"));
             }
 
-            return options;
+            return settings;
         }
 
         // Depots -------------------------------------------
@@ -257,16 +193,16 @@ namespace BindOpen.System.Hosting
         /// Adds the data store executing the specified action.
         /// </summary>
         /// <param key="action">The action to execute on the created data store.</param>
-        public static T AddDepotStore<T>(this T options, Action<IBdoDepotStore> action = null)
+        public static T AddDepotStore<T>(this T settings, Action<IBdoDepotStore> action = null)
             where T : IBdoHostSettings
         {
-            if (options != null)
+            if (settings != null)
             {
-                options.DepotStore ??= BdoData.NewDepotStore();
-                action?.Invoke(options.DepotStore);
+                settings.DepotStore ??= BdoData.NewDepotStore();
+                action?.Invoke(settings.DepotStore);
             }
 
-            return options;
+            return settings;
         }
     }
 }

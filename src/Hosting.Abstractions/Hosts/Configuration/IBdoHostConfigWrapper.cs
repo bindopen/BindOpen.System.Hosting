@@ -10,6 +10,6 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// 
         /// </summary>
-        string LibraryFolderPath { get; set; }
+        IBdoHostKernelSection Kernel { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Hosting.Hosts
@@ -15,13 +14,9 @@ namespace BindOpen.System.Hosting.Hosts
 
         #region Properties
 
-        // Folders ---------------
+        [BdoProperty(Name = "$kernel")]
 
-        /// <summary>
-        /// The library folder path of this instance.
-        /// </summary>
-        [BdoProperty(Name = "library.folderPath")]
-        public string LibraryFolderPath { get; set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
+        public IBdoHostKernelSection Kernel { get; set; } = new BdoHostKernelSection();
 
         #endregion
 

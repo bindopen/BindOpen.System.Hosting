@@ -24,6 +24,31 @@
             
             </summary>
         </member>
+        <member name="T:BindOpen.System.Tests.Hosting.ConfigurationTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.DefaultConfigurationTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.OneFileTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.SeveralFilesTest">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.System.Tests.Hosting.DatasourcesTests">
             <summary>
             
@@ -47,6 +72,56 @@
         <member name="M:BindOpen.System.Tests.Hosting.DatasourcesTests.AddFromConfigurationTest">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.Hosting.PathTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.RootFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.DefaultRootFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.LibraryFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.Hosting.TestConifguration">
+            <summary>
+            This class represents a website application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.Hosting.TestConifguration.FolderPath">
+            <summary>
+            The ReCaptcha public key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.Hosting.TestConifguration.SecretKey">
+            <summary>
+            The ReCaptcha secret key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.Hosting.TestConifguration.NewsUris">
+            <summary>
+            The News URIs of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.TestConifguration.#ctor">
+            <summary>
+            Instantiates a new instance of the WebsiteAppSettings class.
             </summary>
         </member>
         <member name="T:BindOpen.System.Tests.Hosting.GlobalSetUp">

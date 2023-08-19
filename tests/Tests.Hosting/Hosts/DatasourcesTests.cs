@@ -74,10 +74,10 @@ namespace BindOpen.System.Tests.Hosting
         {
             var appHost = BdoHosting.NewHost(
                 settings => settings
-                    .SetConfigurationFile(@".\bdo\config\appconfig.xml")
+                    .AddConfigurationFile(@".\bdo\config\appconfig.xml")
                     .AddDepotStore(store => store
                         .RegisterDatasources(m => m
-                            .AddFromConfiguration(settings.ConfigurationWrapper))));
+                            .AddFromConfiguration(settings.Configuration))));
             appHost.Start();
 
             Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");

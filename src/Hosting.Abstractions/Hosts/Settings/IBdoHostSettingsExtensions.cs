@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a options options.
     /// </summary>
-    public static class IBdoHostConfigWrapperExtensions
+    public static class IBdoHostSettingsExtensions
     {
         /// <summary>
         /// Set the root folder.
@@ -12,7 +12,7 @@
         /// <param key="rootFolderPath">The root folder path.</param>
         /// <returns>Returns the options option.</returns>
         public static T WithLibraryFolder<T>(this T settings, string path)
-            where T : IBdoHostConfigWrapper
+            where T : IBdoHostSettings
         {
             if (settings != null)
             {

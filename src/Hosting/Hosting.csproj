@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <PackageReference Include="BindOpen.System.IO" Version="1.2.79" />
+    <PackageReference Include="BindOpen.System.Logging" Version="1.2.14" />
     <PackageReference Include="BindOpen.System.Scoping" Version="1.2.79" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />

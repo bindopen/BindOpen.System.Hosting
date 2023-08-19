@@ -42,9 +42,11 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         public IBdoHostSettings Settings { get; set; }
 
-        public ProcessExecutionState State { get; set; }
+        public IBdoLogger Logger { get; set; }
 
-        public IBdoLog Log { get; set; }
+        public ProcessExecutionState State => _state;
+
+        protected ProcessExecutionState _state;
 
         /// <summary>
         /// Starts the application.
@@ -54,25 +56,28 @@ namespace BindOpen.System.Hosting.Hosts
         {
             // we start the application instance
 
-            State = ProcessExecutionState.Pending;
+            _state = ProcessExecutionState.Pending;
 
             // we initialize this instance
-            Initialize();
 
-            Log?.Sanitize();
+            var log = BdoLogging.NewLog();
 
-            Log?.AddEvent(EventKinds.Message, "Host starting...");
+            Initialize(log);
 
-            if (State == ProcessExecutionState.Pending)
+            log?.Sanitize();
+
+            log?.AddEvent(EventKinds.Message, "Host starting...");
+
+            if (_state == ProcessExecutionState.Pending)
             {
-                Log?.AddEvent(EventKinds.Message, "Host started successfully");
-                StartSucceeds();
+                log?.AddEvent(EventKinds.Message, "Host started successfully");
+                InitSucceeds();
             }
             else
             {
-                Log?.AddEvent(EventKinds.Message, "Host loaded with errors");
+                log?.AddEvent(EventKinds.Message, "Host loaded with errors");
                 Stop();
-                StartFails();
+                InitFails();
             }
         }
 
@@ -82,44 +87,66 @@ namespace BindOpen.System.Hosting.Hosts
         public virtual void Stop()
         {
             // we unload the host (syncrhonously for the moment)
-            State = ProcessExecutionState.Ended;
+            _state = ProcessExecutionState.Ended;
             Clear();
 
-            Log?.AddEvent(EventKinds.Message, "Host ended");
+            Logger?.Log(BdoLogging.NewLogEvent(EventKinds.Message, q => q.WithDisplayName("Host ended")));
         }
 
         // Trigger actions --------------------------------------
 
+        public event EventHandler OnInitSucceeds;
+
         /// <summary>
         /// Indicates that this instance has successfully started.
         /// </summary>
-        private void StartSucceeds()
+        private void InitSucceeds()
         {
-            Settings?.Action_OnStartSuccess?.Invoke(this);
+            InvokeTriggerAction(HostEventKinds.OnInitSuccess);
+
+            OnInitSucceeds?.Invoke(this, new EventArgs());
         }
+
+        public event EventHandler OnInitFails;
 
         /// <summary>
         /// Indicates that this instance has not successfully started.
         /// </summary>
-        private void StartFails()
+        private void InitFails()
         {
-            Settings?.Action_OnStartFailure?.Invoke(this);
+            InvokeTriggerAction(HostEventKinds.OnInitFailure);
+
+            OnInitFails?.Invoke(this, new EventArgs());
         }
+
+        public event EventHandler OnExecutionSucceeds;
 
         /// <summary>
         /// Indicates that this instance completes.
         /// </summary>
         private void ExecutionSucceeds()
         {
-            Settings?.Action_OnExecutionSucess?.Invoke(this);
+            InvokeTriggerAction(HostEventKinds.OnExecutionSucess);
+
+            OnExecutionSucceeds?.Invoke(this, new EventArgs());
         }
+
+        public event EventHandler OnExecutionFails;
 
         /// <summary>
         /// Indicates that this instance fails.
         /// </summary>
         private void ExecutionFails()
         {
-            Settings?.Action_OnExecutionFailure?.Invoke(this);
+            InvokeTriggerAction(HostEventKinds.OnExecutionFailure);
+
+            OnExecutionFails?.Invoke(this, new EventArgs());
+        }
+
+        private void InvokeTriggerAction(HostEventKinds eventKind)
+        {
+            var action = Settings?.EventActions?.FirstOrDefault(q => (eventKind & HostEventKinds.Any) == (q.EventKind & HostEventKinds.Any));
+            action?._Action?.Invoke(this);
         }
 
         // Paths --------------------------------------
@@ -128,17 +155,9 @@ namespace BindOpen.System.Hosting.Hosts
         /// Initializes information.
         /// </summary>
         /// <returns>Returns the log of the task.</returns>
-        protected virtual bool Initialize()
+        protected virtual bool Initialize(IBdoLog log = null)
         {
             var loaded = true;
-
-            // we determine the root folder path
-
-            var rootFolderPathDefinition = Settings?.RootFolderPathDefinitions?.FirstOrDefault(p => p.Predicate(Settings) == true);
-            if (rootFolderPathDefinition != null)
-            {
-                Settings?.SetRootFolder(rootFolderPathDefinition?.RootFolderPath);
-            }
 
             // we update options (specially paths)
 
@@ -146,97 +165,121 @@ namespace BindOpen.System.Hosting.Hosts
 
             // we set the logger
 
-            Log.WithLogger(Settings.LoggerInit?.Invoke(this));
+            log?.WithLogger(Settings.LoggerInit?.Invoke(this));
 
             // we launch the standard initialization of service
 
-            var log = Log?.InsertChild(EventKinds.Message, "Initializing host...");
+            var subLog = log?.InsertChild(EventKinds.Message, "Initializing host...");
 
             IBdoLog childLog = null;
 
             DataStore.Add(("$host", this));
 
-            // if no errors was found
-
-            if (State == ProcessExecutionState.Pending)
+            try
             {
-                try
+                if (_state == ProcessExecutionState.Pending)
                 {
                     // we load the host config
 
-                    string hostConfigFilePath = this.GetKnownPath(BdoHostPathKind.HostConfigFile);
+                    childLog = subLog?.InsertChild(EventKinds.Message, "Loading host configuration...");
 
-                    if (!File.Exists(hostConfigFilePath))
+                    if (Settings?.ConfigurationFiles != null)
                     {
-                        var message = "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found";
-                        if (Settings.IConfigurationFileRequired == true)
+                        foreach (var file in Settings.ConfigurationFiles)
                         {
-                            log?.AddEvent(EventKinds.Error, message);
-                            State = ProcessExecutionState.Ended;
-                        }
-                        else if (Settings.IConfigurationFileRequired == false)
-                        {
-                            log?.AddEvent(EventKinds.Warning, message);
+                            if (!File.Exists(file.Path))
+                            {
+                                subLog?.AddEvent(
+                                    file.IsRequired ? EventKinds.Error : EventKinds.Warning,
+                                    "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found");
+                            }
+                            else
+                            {
+                                ConfigurationDto configDto = null;
+                                var fileExtension = ConfigurationFileExtenions.Any;
+
+                                if (fileExtension == ConfigurationFileExtenions.Any)
+                                {
+                                    switch (Path.GetExtension(file.Path)?.ToLower())
+                                    {
+                                        case ".json":
+                                            fileExtension = ConfigurationFileExtenions.Json;
+                                            break;
+                                        case ".xml":
+                                        default:
+                                            fileExtension = ConfigurationFileExtenions.Xml;
+                                            break;
+                                    }
+                                }
+
+                                switch (fileExtension)
+                                {
+                                    case ConfigurationFileExtenions.Json:
+                                        configDto = JsonHelper.LoadJson<ConfigurationDto>(file.Path);
+                                        break;
+                                    case ConfigurationFileExtenions.Xml:
+                                        configDto = XmlHelper.LoadXml<ConfigurationDto>(file.Path);
+                                        break;
+                                }
+
+                                var config = configDto.ToPoco();
+
+                                Settings.Configuration = BdoData.NewMetaWrapper<BdoHostConfigWrapper>(this, config);
+
+                                if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
+                                {
+                                    childLog?.AddEvent(EventKinds.Message, "Host config loaded");
+                                }
+                            }
                         }
                     }
-                    else
-                    {
-                        childLog = log?.InsertChild(EventKinds.Message, "Loading host configuration...");
+                }
 
-                        var config = XmlHelper.LoadXml<ConfigurationDto>(hostConfigFilePath).ToPoco();
-                        Settings.ConfigurationWrapper = BdoData.NewMetaWrapper<BdoHostConfigWrapper>(this, config);
-
-                        if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
-                        {
-                            childLog?.AddEvent(EventKinds.Message, "Host config loaded");
-                        }
-                    }
-
-                    //Options.Update().AddEventsTo(childLog);
-
+                if (_state == ProcessExecutionState.Pending)
+                {
                     // we load extensions
 
-                    childLog = log?.InsertChild(EventKinds.Message, "Loading extensions...");
+                    childLog = subLog?.InsertChild(EventKinds.Message, "Loading extensions...");
 
                     loaded &= this.LoadExtensions(
                         q => q = Settings.ExtensionLoadOptions
                             .AddSource(DatasourceKind.Repository, this.GetKnownPath(BdoHostPathKind.LibraryFolder)),
                         childLog);
+                }
 
-                    if (State == ProcessExecutionState.Pending)
+                if (_state == ProcessExecutionState.Pending)
+                {
+                    // we load the data store
+
+                    Clear();
+
+                    DepotStore = Settings?.DepotStore;
+
+                    childLog = subLog?.InsertChild(EventKinds.Message, "Loading data store...");
+                    if (DepotStore == null)
                     {
-                        // we load the data store
+                        childLog?.AddEvent(EventKinds.Message, title: "No data store registered");
+                    }
+                    else
+                    {
+                        loaded &= DepotStore.LoadLazy(this, childLog);
 
-                        Clear();
-
-                        DepotStore = Settings?.DepotStore;
-
-                        childLog = log?.InsertChild(EventKinds.Message, "Loading data store...");
-                        if (DepotStore == null)
+                        if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                         {
-                            childLog?.AddEvent(EventKinds.Message, title: "No data store registered");
-                        }
-                        else
-                        {
-                            loaded &= DepotStore.LoadLazy(this, childLog);
-
-                            if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
-                            {
-                                childLog?.AddEvent(EventKinds.Message, "Data store loaded (" + DepotStore.Depots.Count + " depots added)");
-                            }
+                            childLog?.AddEvent(EventKinds.Message, "Data store loaded (" + DepotStore.Depots.Count + " depots added)");
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    log?.AddException(ex);
-                }
-                finally
-                {
-                }
+            }
+            catch (Exception ex)
+            {
+                subLog?.AddException(ex);
+            }
+            finally
+            {
             }
 
-            State = loaded ? ProcessExecutionState.Pending : ProcessExecutionState.Ended;
+            _state = loaded ? ProcessExecutionState.Pending : ProcessExecutionState.Ended;
 
             return loaded;
         }

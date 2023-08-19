@@ -13,11 +13,6 @@
         /// <summary>
         /// The library folder.
         /// </summary>
-        LibraryFolder,
-
-        /// <summary>
-        /// The host config file.
-        /// </summary>
-        HostConfigFile
+        LibraryFolder
     }
 }
