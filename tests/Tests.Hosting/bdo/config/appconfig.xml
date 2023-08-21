@@ -1,13 +1,8 @@
-﻿<config xmlns="https://storage.bindopen.org/xsd/bindopen">
+﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen">
 
-  <scalar name="reCaptcha.publicKey" value="publicKey" />
-  <scalar name="reCaptcha.secretKey" value="secretKey" />
+  <scalar name="folderPath">_folderPath</scalar>
+  <scalar name="secretKey">_secretKey</scalar>
 
-  <node name="resources.news.atom.uris">
-    <scalar name="daily" value="dailyA" />
-    <scalar name="releases" value="releasesA" />
-  </node>
-  
   <config name="datasources">
     <node name="db.testA" definition="messages$smtp">
       <scalar name="connectionString">connectionString_test1</scalar>
@@ -25,5 +20,5 @@
       <scalar name="connectionString">connectionString_test2</scalar>
     </node>
   </config>
-  
+
 </config>
