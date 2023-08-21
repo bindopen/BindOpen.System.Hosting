@@ -10,7 +10,7 @@ namespace BindOpen.System.Hosting.Hosts
     /// <summary>
     /// The interface defines the base BDO host options.
     /// </summary>
-    public interface IBdoHostSettings : IBdoObject
+    public interface IBdoHostOptions : IBdoObject
     {
         void Update();
 
@@ -21,7 +21,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The root folder path.
         /// </summary>
-        List<(Predicate<IBdoHostSettings> Predicate, string Path)> RootFolderPathAssignments { get; set; }
+        List<(Predicate<IBdoHostOptions> Predicate, string Path)> RootFolderPathAssignments { get; set; }
 
         // Library ----------------------
 
@@ -46,16 +46,16 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The settings.
         /// </summary>
-        IBdoHostConfigWrapper Configuration { get; set; }
+        IBdoSettings Settings { get; set; }
 
         /// <summary>
         /// The settings file path of this instance.
         /// </summary>
         List<(string Path, bool IsRequired, ConfigurationFileExtenions FileKind)> ConfigurationFiles { get; set; }
 
-        IBdoHostSettings SetConfiguration(Action<IBdoHostConfigWrapper> action = null);
+        IBdoHostOptions SetSettings(Action<IBdoSettings> action = null);
 
-        IBdoHostSettings SetConfiguration<T>(Action<T> action = null) where T : class, IBdoHostConfigWrapper, new();
+        IBdoHostOptions SetSettings<T>(Action<T> action = null) where T : class, IBdoSettings, new();
 
         // Loggers ----------------------
 

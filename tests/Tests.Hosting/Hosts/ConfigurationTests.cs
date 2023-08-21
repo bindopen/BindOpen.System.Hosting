@@ -25,30 +25,48 @@ namespace BindOpen.System.Tests.Hosting
         public void DefaultConfigurationTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
-                    .SetConfiguration(q => q.Kernel.ApplicationInstanceName = "host-test"));
+                options => options
+                    .SetSettings(q => q.KernelSettings.ApplicationInstanceName = "host-test"));
             appHost.Start();
 
             Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            Assert.That(appHost.Settings?.Configuration?.Kernel?.ApplicationInstanceName == "host-test", "Application host not load failed");
+            Assert.That(appHost.Options?.Settings?.KernelSettings?.ApplicationInstanceName == "host-test", "Application host not load failed");
         }
 
         /// <summary>
         /// 
         /// </summary>
         [Test]
-        public void OneFileTest()
+        public void CastingConfigTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
-                    .SetRootFolder("./")
-                    .SetConfiguration<TestConifguration>()
-                    .AddConfigurationFile(null, true));
+                options => options
+                    .SetRootFolder(@".\")
+                    .SetSettings<TestSettings>());
             appHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(appHost.Options.Settings is TestSettings, "Application host not load failed");
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //[Test]
+        //public void DefaultConfigFileTest()
+        //{
+        //    var appHost = BdoHosting.NewHost(
+        //        options => options
+        //            .SetRootFolder(@".\")
+        //            .SetSettings<TestSettings>()
+        //            .AddConfigurationFile());
+        //    appHost.Start();
+
+        //    var settings = appHost.Options.GetSettings<TestSettings>();
+
+        //    Assert.That(settings.FolderPath == "_folderPath", "Application host not load failed");
+        //    Assert.That(settings.NewsUris.Count == 2, "Application host not load failed");
+        //}
 
         /// <summary>
         /// 
@@ -57,14 +75,17 @@ namespace BindOpen.System.Tests.Hosting
         public void SeveralFilesTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
-                    .SetRootFolder("./")
-                    .SetConfiguration<TestConifguration>()
-                    .AddConfigurationFile("./bdo/bincopen.xml", true)
-                    .AddConfigurationFile("./bdo/appconfig.xml", true));
+                options => options
+                    .SetRootFolder(@".\")
+                    .SetSettings<TestSettings>()
+                    .AddConfigurationFile(@".\bdo\config\appconfig.xml", true)
+                    .AddConfigurationFile(@".\bdo\config\appconfig2.xml", true));
             appHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            var settings = appHost.Options.GetSettings<TestSettings>();
+
+            Assert.That(settings.FolderPath == "_folderPath", "Application host not load failed");
+            Assert.That(settings.NewsUris.Count == 2, "Application host not load failed");
         }
     }
 }

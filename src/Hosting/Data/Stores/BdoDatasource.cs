@@ -5,7 +5,7 @@ namespace BindOpen.System.Data.Stores
     /// <summary>
     /// This class represents a database data field.
     /// </summary>
-    public class BdoDatasource : BdoMetaWrapper, IBdoDatasource
+    public class BdoDatasource : BdoBaseMetaWrapper, IBdoDatasource
     {
         // ------------------------------------------
         // PROPERTIES
@@ -15,7 +15,7 @@ namespace BindOpen.System.Data.Stores
 
         public string Id { get => Detail?.Id; set { (Detail ??= BdoData.NewMetaSet()).WithId(value); } }
 
-        public string Name { get => Detail?.Name; set { Detail ??= (BdoData.NewMetaSet()).WithName(value); } }
+        public string Name { get => Detail?.Name; set { (Detail ??= BdoData.NewMetaSet()).WithName(value); } }
 
         [BdoProperty("datasourceKind")]
         public DatasourceKind DatasourceKind { get; set; }

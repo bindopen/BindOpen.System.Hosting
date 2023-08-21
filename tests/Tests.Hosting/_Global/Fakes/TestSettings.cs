@@ -7,7 +7,7 @@ namespace BindOpen.System.Tests.Hosting
     /// <summary>
     /// This class represents a website application settings.
     /// </summary>
-    public class TestConifguration : BdoHostConfigWrapper
+    public class TestSettings : BdoHostSettings
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -44,7 +44,7 @@ namespace BindOpen.System.Tests.Hosting
         /// <summary>
         /// Instantiates a new instance of the WebsiteAppSettings class.
         /// </summary>
-        public TestConifguration() : base()
+        public TestSettings() : base()
         {
         }
 

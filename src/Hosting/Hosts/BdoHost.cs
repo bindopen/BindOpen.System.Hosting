@@ -40,7 +40,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// The options of this instance.
         /// </summary>
-        public IBdoHostSettings Settings { get; set; }
+        public IBdoHostOptions Options { get; set; }
 
         public IBdoLogger Logger { get; set; }
 
@@ -64,7 +64,7 @@ namespace BindOpen.System.Hosting.Hosts
 
             Initialize(log);
 
-            log?.Sanitize();
+            //log?.Sanitize();
 
             log?.AddEvent(EventKinds.Message, "Host starting...");
 
@@ -145,7 +145,7 @@ namespace BindOpen.System.Hosting.Hosts
 
         private void InvokeTriggerAction(HostEventKinds eventKind)
         {
-            var action = Settings?.EventActions?.FirstOrDefault(q => (eventKind & HostEventKinds.Any) == (q.EventKind & HostEventKinds.Any));
+            var action = Options?.EventActions?.FirstOrDefault(q => (eventKind & HostEventKinds.Any) == (q.EventKind & HostEventKinds.Any));
             action?._Action?.Invoke(this);
         }
 
@@ -161,11 +161,11 @@ namespace BindOpen.System.Hosting.Hosts
 
             // we update options (specially paths)
 
-            Settings.Update();
+            Options.Update();
 
             // we set the logger
 
-            log?.WithLogger(Settings.LoggerInit?.Invoke(this));
+            log?.WithLogger(Options.LoggerInit?.Invoke(this));
 
             // we launch the standard initialization of service
 
@@ -183,9 +183,11 @@ namespace BindOpen.System.Hosting.Hosts
 
                     childLog = subLog?.InsertChild(EventKinds.Message, "Loading host configuration...");
 
-                    if (Settings?.ConfigurationFiles != null)
+                    Options.Settings ??= BdoData.NewMetaWrapper<BdoHostSettings>(this);
+
+                    if (Options?.ConfigurationFiles != null)
                     {
-                        foreach (var file in Settings.ConfigurationFiles)
+                        foreach (var file in Options.ConfigurationFiles)
                         {
                             if (!File.Exists(file.Path))
                             {
@@ -224,7 +226,8 @@ namespace BindOpen.System.Hosting.Hosts
 
                                 var config = configDto.ToPoco();
 
-                                Settings.Configuration = BdoData.NewMetaWrapper<BdoHostConfigWrapper>(this, config);
+                                Options.Settings.UpdateDetail(config);
+                                Options.Settings.UpdateProperties();
 
                                 if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                                 {
@@ -242,7 +245,7 @@ namespace BindOpen.System.Hosting.Hosts
                     childLog = subLog?.InsertChild(EventKinds.Message, "Loading extensions...");
 
                     loaded &= this.LoadExtensions(
-                        q => q = Settings.ExtensionLoadOptions
+                        q => q = Options.ExtensionLoadOptions
                             .AddSource(DatasourceKind.Repository, this.GetKnownPath(BdoHostPathKind.LibraryFolder)),
                         childLog);
                 }
@@ -253,7 +256,7 @@ namespace BindOpen.System.Hosting.Hosts
 
                     Clear();
 
-                    DepotStore = Settings?.DepotStore;
+                    DepotStore = Options?.DepotStore;
 
                     childLog = subLog?.InsertChild(EventKinds.Message, "Loading data store...");
                     if (DepotStore == null)

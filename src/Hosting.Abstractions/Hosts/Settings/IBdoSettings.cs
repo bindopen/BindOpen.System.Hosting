@@ -5,11 +5,11 @@ namespace BindOpen.System.Hosting.Hosts
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoHostConfigWrapper : IBdoMetaWrapper
+    public interface IBdoSettings : IBdoMetaWrapper
     {
         /// <summary>
         /// 
         /// </summary>
-        IBdoHostKernelSection Kernel { get; set; }
+        IBdoHostKernelSettings KernelSettings { get; set; }
     }
 }

@@ -45,7 +45,7 @@ namespace BindOpen.System.Tests.Hosting
         public void AddFromConnectionStringsTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
+                options => options
                     .AddDepotStore(store => store
                         .RegisterDatasources(m => m
                             .AddFromConnectionStrings(GlobalVariables.NetCoreConfiguration))));
@@ -70,14 +70,14 @@ namespace BindOpen.System.Tests.Hosting
         /// 
         /// </summary>
         [Test]
-        public void AddFromConfigurationTest()
+        public void AddFromSettingsTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
+                options => options
                     .AddConfigurationFile(@".\bdo\config\appconfig.xml")
                     .AddDepotStore(store => store
                         .RegisterDatasources(m => m
-                            .AddFromConfiguration(settings.Configuration))));
+                            .AddFromSettings(options.Settings))));
             appHost.Start();
 
             Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");

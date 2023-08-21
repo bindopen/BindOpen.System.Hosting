@@ -15,7 +15,7 @@ namespace BindOpen.System.Hosting
         /// <param key="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static BdoHost NewHost(
-            Action<IBdoHostSettings> setupAction = null)
+            Action<IBdoHostOptions> setupAction = null)
         {
             var host = BdoData.New<BdoHost>();
             host.Configure(setupAction);

@@ -28,7 +28,7 @@ namespace BindOpen.System.Tests.Hosting
         public void RootFolderTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
+                options => options
                     .SetRootFolder("rootFolder")
                     .AddRootFolder(s => false, "rootFolderA")
                     .AddRootFolder(s => true, "rootFolderB")
@@ -42,7 +42,7 @@ namespace BindOpen.System.Tests.Hosting
             Assert.That(rootFolderPath == @"rootFolderB\", "Bad library folder path");
 
             appHost = BdoHosting.NewHost(
-                settings => settings
+                options => options
                     .SetRootFolder("rootFolder")
                     .AddRootFolder(s => false, "rootFolderA")
                     .WithLibraryFolder(@".\bdo\lib"));
@@ -62,7 +62,7 @@ namespace BindOpen.System.Tests.Hosting
         public void DefaultRootFolderTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
+                options => options
                     .SetRootFolder(@".\default")
                     .AddRootFolder(s => false, "rootFolderA")
                     .WithLibraryFolder(@".\bdo\lib"));
@@ -79,7 +79,7 @@ namespace BindOpen.System.Tests.Hosting
             // No root folder set initially
 
             appHost = BdoHosting.NewHost(
-                settings => settings
+                options => options
                     .AddRootFolder(s => false, "rootFolderA")
                     .WithLibraryFolder(@".\bdo\lib"));
             appHost.Start();
@@ -100,7 +100,7 @@ namespace BindOpen.System.Tests.Hosting
         public void LibraryFolderTest()
         {
             var appHost = BdoHosting.NewHost(
-                settings => settings
+                options => options
                     .SetRootFolder("./")
                     .WithLibraryFolder(@".\bdo\lib"));
             appHost.Start();

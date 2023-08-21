@@ -7,7 +7,7 @@ namespace BindOpen.System.Hosting.Hosts
     /// <summary>
     /// This class represents a BindOpen host settings.
     /// </summary>
-    public class BdoHostKernelSection : BdoObject, IBdoHostKernelSection
+    public class BdoHostKernelSettings : BdoObject, IBdoHostKernelSettings
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -56,7 +56,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// Instantiates a new instance of the BdoHostConfigSection class.
         /// </summary>
-        public BdoHostKernelSection()
+        public BdoHostKernelSettings()
             : base()
         {
         }

@@ -1,6 +1,6 @@
 ﻿namespace BindOpen.System.Hosting.Hosts
 {
-    public interface IBdoHostKernelSection
+    public interface IBdoHostKernelSettings
     {
         string ApplicationInstanceName { get; set; }
         string LibraryFolderPath { get; set; }

@@ -1,0 +1,8 @@
+﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen">
+
+  <node name="uris">
+    <scalar name="daily">dailyA</scalar>
+    <scalar name="releases">releasesA</scalar>
+  </node>
+
+</config>

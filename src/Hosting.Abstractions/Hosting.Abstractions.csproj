@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Hosts\Configuration\IBdoHostConfigWrapper.cs~RF1e569feb.TMP" />
+    <None Remove="Hosts\Settings\IBdoHostConfigWrapper.cs~RF1e569feb.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,8 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.Abstractions" Version="1.2.79" />
-    <PackageReference Include="BindOpen.System.Logging.Abstractions" Version="1.2.14" />
+    <PackageReference Include="BindOpen.System.Abstractions" Version="1.2.83" />
+    <PackageReference Include="BindOpen.System.Logging.Abstractions" Version="1.2.16" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
   </ItemGroup>
