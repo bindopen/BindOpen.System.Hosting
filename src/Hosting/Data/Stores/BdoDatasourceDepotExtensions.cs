@@ -121,13 +121,13 @@ namespace BindOpen.System.Data.Stores
                 var sections = config.GetSection(keyName).GetChildren();
                 foreach (var section in sections)
                 {
-                    depot.Add(
-                        BdoData.NewMetaWrapper<BdoDatasource>(
-                            depot.Scope,
-                            BdoData.NewMetaSet(
-                                section.Key,
-                                (IBdoDatasource.__ConnectionString_DatasourceKind, DatasourceKind.Database),
-                                (IBdoDatasource.__ConnectionString_Token, section.Value))));
+                    var datasource = BdoData.NewMetaWrapper<BdoDatasource>(
+                        depot.Scope,
+                        BdoData.NewMetaSet(
+                            (IBdoDatasource.__ConnectionString_DatasourceKind, DatasourceKind.Database),
+                            (IBdoDatasource.__ConnectionString_Token, section.Value)))
+                        .WithName(section.Key);
+                    depot.Add(datasource);
                 }
             };
 
@@ -140,9 +140,9 @@ namespace BindOpen.System.Data.Stores
         /// <param key="depot">The datasource depot to consider.</param>
         /// <param key="config">The config to consider.</param>
         /// <param key="keyName">The key name to consider.</param>
-        public static IBdoDatasourceDepot AddFromConfiguration<T>(
+        public static IBdoDatasourceDepot AddFromSettings<T>(
             this T depot,
-            IBdoHostConfigWrapper config,
+            IBdoSettings settings,
             params object[] tokens)
             where T : IBdoDatasourceDepot
         {
@@ -151,18 +151,18 @@ namespace BindOpen.System.Data.Stores
                 tokens = new object[] { "/datasources" };
             }
 
-            if (depot != null && config != null)
+            if (depot != null && settings != null)
             {
-                var meta = config.Detail?.Descendant<IBdoConfiguration>(tokens);
+                var meta = settings.Detail?.Descendant<IBdoConfiguration>(tokens);
 
                 if (meta is IBdoConfiguration subConfig)
                 {
                     foreach (var childMeta in subConfig)
                     {
                         var set = BdoData.NewMetaSet(childMeta?.ToArray());
-                        set.WithName(childMeta.Name);
 
                         var source = depot.Scope.NewMetaWrapper<BdoDatasource>(set);
+                        source.WithName(childMeta.Name);
                         depot.Add(source);
                     }
                 }

@@ -1,0 +1,37 @@
+﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen">
+
+  <config name="$kernel">
+    <scalar name="applicationInstanceName">host-test</scalar>
+
+    <scalar name="executionLevel">Development</scalar>
+
+    <scalar name="runtime.folderPath">
+      <ref>{{$(application.folderPath)}}\bdo</ref>
+    </scalar>
+
+    <scalar name="library.folderPath">
+      <ref>{{$(runtime.folderPath)}}\bdo\lib</ref>
+    </scalar>
+
+    <scalar name="packages.folderPath">
+      <ref>{{$(runtime.folderPath)}}\bdo\packages</ref>
+    </scalar>
+
+    <!--logs-->
+
+    <node name="$logs">
+      <scalar name="expirationDayNumber">10</scalar>
+
+      <scalar name="folderPath">
+        <ref>{{$(runtime.folderPath)}}\bdo\logs</ref>
+      </scalar>
+
+      <scalar name="fileName">
+        <ref>log_{{$(timestamp)_$(id)}}.txt</ref>
+      </scalar>
+
+      <scalar name="exirationDayNumber">10</scalar>
+    </node>    
+  </config>
+    
+</config>

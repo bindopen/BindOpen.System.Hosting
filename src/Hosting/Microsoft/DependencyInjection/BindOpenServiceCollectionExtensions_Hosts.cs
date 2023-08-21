@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Hosting;
 using BindOpen.System.Hosting.Hosts;
-using BindOpen.System.Logging;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -20,10 +19,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddBindOpen(
             this IServiceCollection services,
-            Action<IBdoHostSettings> setupAction = null,
-            IBdoLog log = null)
+            Action<IBdoHostOptions> setupAction = null)
         {
-            var host = BdoHosting.NewHost(setupAction, log);
+            var host = BdoHosting.NewHost(setupAction);
             host.Start();
             services.AddSingleton<IBdoHost>(_ => host);
 
