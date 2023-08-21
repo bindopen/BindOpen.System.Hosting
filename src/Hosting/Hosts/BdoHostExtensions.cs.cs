@@ -13,13 +13,13 @@ namespace BindOpen.System.Hosting.Hosts
         /// </summary>
         /// <param key="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
-        public static T Configure<T>(this T host, Action<IBdoHostSettings> setupOptions)
+        public static T Configure<T>(this T host, Action<IBdoHostOptions> setupOptions)
             where T : IBdoHost
         {
             if (host != null)
             {
-                host.Settings ??= BdoData.New<BdoHostSettings>();
-                setupOptions?.Invoke(host.Settings);
+                host.Options ??= BdoData.New<BdoHostOptions>();
+                setupOptions?.Invoke(host.Options);
             }
 
             return host;

@@ -5,11 +5,12 @@ namespace BindOpen.System.Hosting.Hosts
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoHostConfigWrapper : IBdoMetaWrapper
+    public interface IBdoSettings : IBdoMetaWrapper
     {
         /// <summary>
         /// 
         /// </summary>
-        string LibraryFolderPath { get; set; }
+        [BdoProperty(Name = "$kernel", Reference = "/$kernel")]
+        IBdoHostKernelSettings Kernel { get; set; }
     }
 }

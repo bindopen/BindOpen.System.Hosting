@@ -24,6 +24,31 @@
             
             </summary>
         </member>
+        <member name="T:BindOpen.System.Tests.Hosting.ConfigurationTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.DefaultConfigurationTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.CastingConfigTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.SeveralFilesTest">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.System.Tests.Hosting.DatasourcesTests">
             <summary>
             
@@ -44,34 +69,79 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Tests.Hosting.DatasourcesTests.AddFromConfigurationTest">
+        <member name="M:BindOpen.System.Tests.Hosting.DatasourcesTests.AddFromSettingsTest">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.Hosting.LoggersTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.LoggersTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.LoggersTests.DefaultConfigurationTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.Hosting.PathTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.RootFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.DefaultRootFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.PathTests.LibraryFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.Hosting.TestSettings">
+            <summary>
+            This class represents a website application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.Hosting.TestSettings.FolderPath">
+            <summary>
+            The ReCaptcha public key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.Hosting.TestSettings.SecretKey">
+            <summary>
+            The ReCaptcha secret key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.Hosting.TestSettings.NewsUris">
+            <summary>
+            The News URIs of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.Hosting.TestSettings.#ctor">
+            <summary>
+            Instantiates a new instance of the WebsiteAppSettings class.
             </summary>
         </member>
         <member name="T:BindOpen.System.Tests.Hosting.GlobalSetUp">
             <summary>
             This class set the global settings up.
-            </summary>
-        </member>
-        <member name="T:BindOpen.System.Tests.Core.Settings.TestAppConfiguration">
-            <summary>
-            This class represents a test application settings.
-            </summary>
-        </member>
-        <member name="P:BindOpen.System.Tests.Core.Settings.TestAppConfiguration.TestFolderPath">
-            <summary>
-            The test folder path of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.System.Tests.Core.Settings.TestAppConfiguration.Uris">
-            <summary>
-            The URIs of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.System.Tests.Core.Settings.TestAppConfiguration.#ctor">
-            <summary>
-            Instantiates a new instance of the TestAppSettings class.
             </summary>
         </member>
     </members>

@@ -32,7 +32,7 @@ namespace BindOpen.System.Tests.Hosting
             {
                 _appHost ??= BdoHosting.NewHost(
                     options => options
-                        .ThrowExceptionOnStartFailure());
+                        .ThrowExceptionOnInitFailure());
 
                 _appHost?.Start();
 

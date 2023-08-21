@@ -4,7 +4,8 @@ Todo list for BindOpen
 ## Next tasks
 
 - [ ] Read configuration from appsettings.json
-- [ ] Make appconfig more simple
+- [ ] Deal with loggers
+- [ ] Read object in settings (sample $kernel)
 
 ## Stuff to check out later on
 
