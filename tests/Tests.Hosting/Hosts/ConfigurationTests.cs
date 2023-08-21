@@ -26,12 +26,12 @@ namespace BindOpen.System.Tests.Hosting
         {
             var appHost = BdoHosting.NewHost(
                 options => options
-                    .SetSettings(q => q.KernelSettings.ApplicationInstanceName = "host-test"));
+                    .SetSettings(q => q.Kernel.ApplicationInstanceName = "host-test"));
             appHost.Start();
 
             Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            Assert.That(appHost.Options?.Settings?.KernelSettings?.ApplicationInstanceName == "host-test", "Application host not load failed");
+            Assert.That(appHost.Options?.Settings?.Kernel?.ApplicationInstanceName == "host-test", "Application host not load failed");
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace BindOpen.System.Tests.Hosting
         ///// 
         ///// </summary>
         //[Test]
-        //public void DefaultConfigFileTest()
+        //public void KernelConfigFileTest()
         //{
         //    var appHost = BdoHosting.NewHost(
         //        options => options
@@ -64,8 +64,7 @@ namespace BindOpen.System.Tests.Hosting
 
         //    var settings = appHost.Options.GetSettings<TestSettings>();
 
-        //    Assert.That(settings.FolderPath == "_folderPath", "Application host not load failed");
-        //    Assert.That(settings.NewsUris.Count == 2, "Application host not load failed");
+        //    Assert.That(settings.Kernel.ApplicationInstanceName == "host-test", "Application host not load failed");
         //}
 
         /// <summary>

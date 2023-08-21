@@ -10,6 +10,7 @@ namespace BindOpen.System.Hosting.Hosts
         /// <summary>
         /// 
         /// </summary>
-        IBdoHostKernelSettings KernelSettings { get; set; }
+        [BdoProperty(Name = "$kernel", Reference = "/$kernel")]
+        IBdoHostKernelSettings Kernel { get; set; }
     }
 }

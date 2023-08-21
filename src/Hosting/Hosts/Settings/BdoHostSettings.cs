@@ -13,9 +13,7 @@ namespace BindOpen.System.Hosting.Hosts
 
         #region Properties
 
-        [BdoProperty(Name = "$kernel")]
-
-        public IBdoHostKernelSettings KernelSettings { get; set; } = new BdoHostKernelSettings();
+        public IBdoHostKernelSettings Kernel { get; set; } = new BdoHostKernelSettings();
 
         #endregion
 
