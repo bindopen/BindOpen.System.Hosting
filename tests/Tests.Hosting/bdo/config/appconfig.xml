@@ -3,7 +3,7 @@
   <scalar name="folderPath">_folderPath</scalar>
   <scalar name="secretKey">_secretKey</scalar>
 
-  <config name="datasources">
+  <config name="$datasources">
     <node name="db.testA" definition="messages$smtp">
       <scalar name="connectionString">connectionString_test1</scalar>
       <scalar name="datasourceKind">EmailServer</scalar>

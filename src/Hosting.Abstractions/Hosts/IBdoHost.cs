@@ -8,7 +8,7 @@ namespace BindOpen.System.Hosting.Hosts
     /// <summary>
     /// The interface defines the base bot.
     /// </summary>
-    public interface IBdoHost : IBdoScope, IBdoLogTracked
+    public interface IBdoHost : IBdoScope, IBdoLoggerTracked
     {
         ProcessExecutionState State { get; }
 

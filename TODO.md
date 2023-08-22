@@ -5,7 +5,7 @@ Todo list for BindOpen
 
 - [ ] Read configuration from appsettings.json
 - [ ] Deal with loggers
-- [ ] Read object in settings (sample $kernel)
+- [ ] Read object in settings (example /$kernel)
 
 ## Stuff to check out later on
 

@@ -1,37 +1,42 @@
 ﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen">
 
-  <config name="$kernel">
-    <scalar name="applicationInstanceName">host-test</scalar>
+  <scalar name="folderPath">_folderPath</scalar>
+  <scalar name="secretKey">_secretKey</scalar>
 
-    <scalar name="executionLevel">Development</scalar>
+  <config name ="$kernel">
+    <object name="bdo">
+      <scalar name="applicationInstanceName">host-test</scalar>
 
-    <scalar name="runtime.folderPath">
-      <ref>{{$(application.folderPath)}}\bdo</ref>
-    </scalar>
+      <scalar name="executionLevel">Development</scalar>
 
-    <scalar name="library.folderPath">
-      <ref>{{$(runtime.folderPath)}}\bdo\lib</ref>
-    </scalar>
-
-    <scalar name="packages.folderPath">
-      <ref>{{$(runtime.folderPath)}}\bdo\packages</ref>
-    </scalar>
-
-    <!--logs-->
-
-    <node name="$logs">
-      <scalar name="expirationDayNumber">10</scalar>
-
-      <scalar name="folderPath">
-        <ref>{{$(runtime.folderPath)}}\bdo\logs</ref>
+      <scalar name="runtime.folderPath">
+        <ref>{{$(application.folderPath)}}\bdo</ref>
       </scalar>
 
-      <scalar name="fileName">
-        <ref>log_{{$(timestamp)_$(id)}}.txt</ref>
+      <scalar name="library.folderPath">
+        <ref>{{$(runtime.folderPath)}}\bdo\lib</ref>
       </scalar>
 
-      <scalar name="exirationDayNumber">10</scalar>
-    </node>    
+      <scalar name="packages.folderPath">
+        <ref>{{$(runtime.folderPath)}}\bdo\packages</ref>
+      </scalar>
+
+      <!--logging-->
+
+      <node name="logging">
+        <scalar name="expirationDayNumber">10</scalar>
+
+        <scalar name="folderPath">
+          <ref>{{$(runtime.folderPath)}}\bdo\logs</ref>
+        </scalar>
+
+        <scalar name="fileName">
+          <ref>log_{{$(timestamp)_$(id)}}.txt</ref>
+        </scalar>
+
+        <scalar name="exirationDayNumber">10</scalar>
+      </node>
+    </object>
   </config>
-    
+
 </config>

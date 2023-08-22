@@ -44,6 +44,11 @@
             
             </summary>
         </member>
+        <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.KernelConfigFileTest">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:BindOpen.System.Tests.Hosting.ConfigurationTests.SeveralFilesTest">
             <summary>
             
