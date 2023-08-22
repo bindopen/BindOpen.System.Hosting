@@ -148,7 +148,7 @@ namespace BindOpen.System.Data.Stores
         {
             if (tokens?.Any() != true)
             {
-                tokens = new object[] { "/datasources" };
+                tokens = new object[] { "^$datasources" };
             }
 
             if (depot != null && settings != null)

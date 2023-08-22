@@ -49,23 +49,23 @@ namespace BindOpen.System.Tests.Hosting
             Assert.That(appHost.Options.Settings is TestSettings, "Application host not load failed");
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //[Test]
-        //public void KernelConfigFileTest()
-        //{
-        //    var appHost = BdoHosting.NewHost(
-        //        options => options
-        //            .SetRootFolder(@".\")
-        //            .SetSettings<TestSettings>()
-        //            .AddConfigurationFile());
-        //    appHost.Start();
+        /// <summary>
+        /// 
+        /// </summary>
+        [Test]
+        public void KernelConfigFileTest()
+        {
+            var appHost = BdoHosting.NewHost(
+                options => options
+                    .SetRootFolder(@".\")
+                    .SetSettings<TestSettings>()
+                    .AddConfigurationFile());
+            appHost.Start();
 
-        //    var settings = appHost.Options.GetSettings<TestSettings>();
+            var settings = appHost.Options.GetSettings<TestSettings>();
 
-        //    Assert.That(settings.Kernel.ApplicationInstanceName == "host-test", "Application host not load failed");
-        //}
+            Assert.That(settings.Kernel.ApplicationInstanceName == "host-test", "Application host not load failed");
+        }
 
         /// <summary>
         /// 
