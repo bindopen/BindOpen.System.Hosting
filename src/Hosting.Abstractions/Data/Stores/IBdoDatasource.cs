@@ -3,7 +3,7 @@
 namespace BindOpen.System.Data.Stores
 {
     /// <summary>
-    /// 
+    /// This interface defines a data source.
     /// </summary>
     public interface IBdoDatasource : IBdoMetaWrapper, INamed, IReferenced
     {

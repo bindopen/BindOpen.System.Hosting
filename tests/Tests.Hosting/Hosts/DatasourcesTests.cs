@@ -27,7 +27,7 @@ namespace BindOpen.System.Tests.Hosting
         [Test]
         public void CreateDatasourceTest()
         {
-            var detail = BdoData.NewMetaSet()
+            var detail = BdoData.NewSet()
                 .With(
                     (IBdoDatasource.__ConnectionString_Token, "test_connectionString"),
                     (IBdoDatasource.__ConnectionString_DatasourceKind, DatasourceKind.EmailServer));

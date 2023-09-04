@@ -39,9 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.IO" Version="1.2.92" />
-    <PackageReference Include="BindOpen.System.Logging" Version="1.2.20" />
-    <PackageReference Include="BindOpen.System.Scoping" Version="1.2.92" />
+    <PackageReference Include="BindOpen.System.IO" Version="1.2.93" />
+    <PackageReference Include="BindOpen.System.Logging" Version="1.2.21" />
+    <PackageReference Include="BindOpen.System.Scoping" Version="1.2.93" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
