@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Hosting.Hosts;
+﻿using BindOpen.Kernel.Hosting;
 using BindOpen.Kernel.Scoping;
 using System;
 

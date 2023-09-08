@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Hosting.Hosts;
+using BindOpen.Kernel.Hosting.Settings;
 using System;
 
 namespace BindOpen.Kernel.Hosting
