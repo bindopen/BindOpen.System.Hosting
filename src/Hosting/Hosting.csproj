@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.System.Hosting</AssemblyName>
-    <PackageId>BindOpen.System.Hosting</PackageId>
-    <Product>BindOpen.System</Product>
+    <AssemblyName>BindOpen.Kernel.Hosting</AssemblyName>
+    <PackageId>BindOpen.Kernel.Hosting</PackageId>
+    <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles runtime.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.System.Hosting</RootNamespace>
+    <RootNamespace>BindOpen.Kernel.Hosting</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.System.Hosting.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.Hosting.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,9 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.IO" Version="1.2.92" />
-    <PackageReference Include="BindOpen.System.Logging" Version="1.2.20" />
-    <PackageReference Include="BindOpen.System.Scoping" Version="1.2.92" />
+    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.94" />
+    <PackageReference Include="BindOpen.Kernel.Logging" Version="1.2.22" />
+    <PackageReference Include="BindOpen.Kernel.Scoping" Version="1.2.94" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>

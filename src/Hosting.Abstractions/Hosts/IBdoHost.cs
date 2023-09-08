@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Processing;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Processing;
+using BindOpen.Kernel.Scoping;
 using System;
 
-namespace BindOpen.System.Hosting.Hosts
+namespace BindOpen.Kernel.Hosting.Hosts
 {
     /// <summary>
     /// The interface defines the base bot.

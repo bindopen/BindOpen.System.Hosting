@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 
-namespace BindOpen.System.Hosting.Hosts
+namespace BindOpen.Kernel.Hosting.Hosts
 {
     /// <summary>
     /// 

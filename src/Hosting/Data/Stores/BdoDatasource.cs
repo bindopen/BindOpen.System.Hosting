@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 
-namespace BindOpen.System.Data.Stores
+namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
-    /// This class represents a database data field.
+    /// This class represents a data source.
     /// </summary>
     public class BdoDatasource : BdoBaseMetaWrapper, IBdoDatasource
     {
@@ -13,9 +13,9 @@ namespace BindOpen.System.Data.Stores
 
         #region Properties
 
-        public string Id { get => Detail?.Id; set { (Detail ??= BdoData.NewMetaSet()).WithId(value); } }
+        public string Id { get => Detail?.Id; set { (Detail ??= BdoData.NewSet()).WithId(value); } }
 
-        public string Name { get => Detail?.Name; set { (Detail ??= BdoData.NewMetaSet()).WithName(value); } }
+        public string Name { get => Detail?.Name; set { (Detail ??= BdoData.NewSet()).WithName(value); } }
 
         [BdoProperty("datasourceKind")]
         public DatasourceKind DatasourceKind { get; set; }

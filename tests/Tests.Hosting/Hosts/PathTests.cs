@@ -1,11 +1,11 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Hosting;
-using BindOpen.System.Hosting.Hosts;
-using BindOpen.System.Processing;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Hosting;
+using BindOpen.Kernel.Hosting.Hosts;
+using BindOpen.Kernel.Processing;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Hosting
+namespace BindOpen.Kernel.Tests.Hosting
 {
     /// <summary>
     /// 

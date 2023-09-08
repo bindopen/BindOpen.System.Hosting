@@ -1,12 +1,12 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Hosting.Hosts;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Hosting.Hosts;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 
-namespace BindOpen.System.Data.Stores
+namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
     /// This class represents an data source extensions.
@@ -123,7 +123,7 @@ namespace BindOpen.System.Data.Stores
                 {
                     var datasource = BdoData.NewMetaWrapper<BdoDatasource>(
                         depot.Scope,
-                        BdoData.NewMetaSet(
+                        BdoData.NewSet(
                             (IBdoDatasource.__ConnectionString_DatasourceKind, DatasourceKind.Database),
                             (IBdoDatasource.__ConnectionString_Token, section.Value)))
                         .WithName(section.Key);
@@ -159,7 +159,7 @@ namespace BindOpen.System.Data.Stores
                 {
                     foreach (var childMeta in subConfig)
                     {
-                        var set = BdoData.NewMetaSet(childMeta?.ToArray());
+                        var set = BdoData.NewSet(childMeta?.ToArray());
 
                         var source = depot.Scope.NewMetaWrapper<BdoDatasource>(set);
                         source.WithName(childMeta.Name);

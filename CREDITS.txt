@@ -1,4 +1,4 @@
-BindOpen.System.Scoping
+BindOpen.Kernel.Scoping
 Copyright (c) 2022 BindOpen
 
 This product includes software developed at

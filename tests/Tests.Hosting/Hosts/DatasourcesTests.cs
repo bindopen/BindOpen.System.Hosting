@@ -1,11 +1,11 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Stores;
-using BindOpen.System.Hosting;
-using BindOpen.System.Processing;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Stores;
+using BindOpen.Kernel.Hosting;
+using BindOpen.Kernel.Processing;
 using NUnit.Framework;
 
-namespace BindOpen.System.Tests.Hosting
+namespace BindOpen.Kernel.Tests.Hosting
 {
     /// <summary>
     /// 
@@ -27,7 +27,7 @@ namespace BindOpen.System.Tests.Hosting
         [Test]
         public void CreateDatasourceTest()
         {
-            var detail = BdoData.NewMetaSet()
+            var detail = BdoData.NewSet()
                 .With(
                     (IBdoDatasource.__ConnectionString_Token, "test_connectionString"),
                     (IBdoDatasource.__ConnectionString_DatasourceKind, DatasourceKind.EmailServer));

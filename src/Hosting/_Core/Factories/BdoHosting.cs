@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Hosting.Hosts;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Hosting.Hosts;
 using System;
 
-namespace BindOpen.System.Hosting
+namespace BindOpen.Kernel.Hosting
 {
     /// <summary>
     /// This static class is a factory for BindOpen hosts.

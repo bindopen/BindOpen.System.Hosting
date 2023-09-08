@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 
-namespace BindOpen.System.Data.Stores
+namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
-    /// 
+    /// This interface defines a data source.
     /// </summary>
     public interface IBdoDatasource : IBdoMetaWrapper, INamed, IReferenced
     {
