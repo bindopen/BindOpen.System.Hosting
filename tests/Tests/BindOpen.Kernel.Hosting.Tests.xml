@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Kernel.Hosting.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Kernel.Hosting.AppHostTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.AppHostTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.AppHostTests.TestAppHost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.AppHostTests.TestAppHostWithNoOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Kernel.Hosting.ConfigurationTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.ConfigurationTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.ConfigurationTests.DefaultConfigurationTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.ConfigurationTests.CastingConfigTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.ConfigurationTests.KernelConfigFileTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.ConfigurationTests.SeveralFilesTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Kernel.Hosting.DatasourcesTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.DatasourcesTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.DatasourcesTests.CreateDatasourceTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.DatasourcesTests.AddFromConnectionStringsTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.DatasourcesTests.AddFromSettingsTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Kernel.Hosting.Loggers.LoggersTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.Loggers.LoggersTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.Loggers.LoggersTests.DefaultConfigurationTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Kernel.Hosting.Settings.PathTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.Settings.PathTests.Setup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.Settings.PathTests.RootFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.Settings.PathTests.DefaultRootFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.Settings.PathTests.LibraryFolderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Kernel.Hosting.Tests.TestSettings">
+            <summary>
+            This class represents a website application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Kernel.Hosting.Tests.TestSettings.FolderPath">
+            <summary>
+            The ReCaptcha public key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Kernel.Hosting.Tests.TestSettings.SecretKey">
+            <summary>
+            The ReCaptcha secret key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Kernel.Hosting.Tests.TestSettings.NewsUris">
+            <summary>
+            The News URIs of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Kernel.Hosting.Tests.TestSettings.#ctor">
+            <summary>
+            Instantiates a new instance of the WebsiteAppSettings class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Kernel.Hosting.Tests.GlobalSetUp">
+            <summary>
+            This class set the global settings up.
+            </summary>
+        </member>
+    </members>
+</doc>

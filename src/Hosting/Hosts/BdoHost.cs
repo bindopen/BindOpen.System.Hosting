@@ -1,14 +1,16 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.Hosting.Settings;
+using BindOpen.Kernel.IO;
 using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Logging.Loggers;
 using BindOpen.Kernel.Processing;
 using BindOpen.Kernel.Scoping;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Kernel.Hosting.Hosts
+namespace BindOpen.Kernel.Hosting
 {
     /// <summary>
     /// This class represents a host.

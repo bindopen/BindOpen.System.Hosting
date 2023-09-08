@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Hosting.Hosts;
+using BindOpen.Kernel.Hosting.Settings;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using Microsoft.Extensions.Configuration;
@@ -96,10 +96,7 @@ namespace BindOpen.Kernel.Data.Stores
             IBdoDatasource source)
             where T : IBdoDatasourceDepot
         {
-            if (depot != null)
-            {
-                depot.Add<IBdoDatasourceDepot, IBdoDatasource>(source);
-            }
+            depot?.Add<IBdoDatasourceDepot, IBdoDatasource>(source);
 
             return depot;
         }

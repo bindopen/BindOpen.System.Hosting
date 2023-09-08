@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.Kernel.Hosting</AssemblyName>
-    <PackageId>BindOpen.Kernel.Hosting</PackageId>
+    <AssemblyName>BindOpen.Kernel.Hosting.Abstractions</AssemblyName>
+    <PackageId>BindOpen.Kernel.Hosting.Abstractions</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Hosting.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.Hosting.Abstractions.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,15 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.96" />
-    <PackageReference Include="BindOpen.Kernel.Logging" Version="1.2.23" />
-    <PackageReference Include="BindOpen.Kernel.Scoping" Version="1.2.96" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.23" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
-  </ItemGroup>
-
 </Project>
