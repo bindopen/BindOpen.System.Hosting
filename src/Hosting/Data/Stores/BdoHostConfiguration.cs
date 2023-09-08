@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Data.Stores
+﻿namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
     /// This class represents a data source depot.

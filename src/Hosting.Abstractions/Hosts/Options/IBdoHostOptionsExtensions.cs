@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Hosting.Hosts;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Hosting.Hosts;
 
-namespace BindOpen.System.Hosting
+namespace BindOpen.Kernel.Hosting
 {
     /// <summary>
     /// This class represents a options options.

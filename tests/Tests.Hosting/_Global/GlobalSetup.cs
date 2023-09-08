@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace BindOpen.System.Tests.Hosting
+namespace BindOpen.Kernel.Tests.Hosting
 {
     /// <summary>
     /// This class set the global settings up.

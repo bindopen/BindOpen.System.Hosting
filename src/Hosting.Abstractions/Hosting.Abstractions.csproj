@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.System.Hosting.Abstractions</AssemblyName>
-    <PackageId>BindOpen.System.Hosting.Abstractions</PackageId>
-    <Product>BindOpen.System</Product>
+    <AssemblyName>BindOpen.Kernel.Hosting.Abstractions</AssemblyName>
+    <PackageId>BindOpen.Kernel.Hosting.Abstractions</PackageId>
+    <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles runtime.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.System.Hosting</RootNamespace>
+    <RootNamespace>BindOpen.Kernel.Hosting</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.System.Hosting.Abstractions.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.Hosting.Abstractions.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,8 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.Abstractions" Version="1.2.93" />
-    <PackageReference Include="BindOpen.System.Logging.Abstractions" Version="1.2.21" />
+    <PackageReference Include="BindOpen.Kernel.Abstractions" Version="1.2.94" />
+    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.22" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
   </ItemGroup>

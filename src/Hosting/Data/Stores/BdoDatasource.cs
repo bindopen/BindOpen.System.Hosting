@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 
-namespace BindOpen.System.Data.Stores
+namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
-    /// This class represents a database data field.
+    /// This class represents a data source.
     /// </summary>
     public class BdoDatasource : BdoBaseMetaWrapper, IBdoDatasource
     {

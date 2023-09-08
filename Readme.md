@@ -42,9 +42,9 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen.Bpm](https://github.com/bindopen/BindOpen.Bpm) allows you to manage business processes.
 
-[BindOpen.System.Processing.Logging](https://github.com/bindopen/BindOpen.System.Processing.Logging) allows you to track your processes from basic methods to advanced workflows.
+[BindOpen.Kernel.Processing.Logging](https://github.com/bindopen/BindOpen.Kernel.Processing.Logging) allows you to track your processes from basic methods to advanced workflows.
 
-[BindOpen.System.Databases](https://github.com/bindopen/BindOpen.System.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
+[BindOpen.Kernel.Databases](https://github.com/bindopen/BindOpen.Kernel.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
 
 [BindOpen.Commands](https://github.com/bindopen/BindOpen.Commands) allows you to manage arguments of command lines.
 
