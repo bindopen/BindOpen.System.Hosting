@@ -1,12 +1,12 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Stores;
-using BindOpen.System.Hosting.Hosts;
-using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Stores;
+using BindOpen.Kernel.Hosting.Hosts;
+using BindOpen.Kernel.Logging;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Hosting
+namespace BindOpen.Kernel.Hosting
 {
     /// <summary>
     /// This class represents a options options.

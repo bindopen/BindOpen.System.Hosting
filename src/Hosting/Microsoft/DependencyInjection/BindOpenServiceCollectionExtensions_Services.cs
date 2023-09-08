@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Hosting.Hosts;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Hosting.Hosts;
+using BindOpen.Kernel.Scoping;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection

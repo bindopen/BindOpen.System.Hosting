@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 
-namespace BindOpen.System.Hosting.Hosts
+namespace BindOpen.Kernel.Hosting.Hosts
 {
     /// <summary>
     /// This static class contains the default option values.

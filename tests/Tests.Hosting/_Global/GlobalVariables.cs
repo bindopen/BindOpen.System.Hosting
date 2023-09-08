@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Hosting;
-using BindOpen.System.Hosting.Hosts;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Hosting;
+using BindOpen.Kernel.Hosting.Hosts;
 using Microsoft.Extensions.Configuration;
 using System;
 
-namespace BindOpen.System.Tests.Hosting
+namespace BindOpen.Kernel.Tests.Hosting
 {
     public static class GlobalVariables
     {
