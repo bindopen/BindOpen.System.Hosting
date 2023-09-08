@@ -1,0 +1,71 @@
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Stores;
+using BindOpen.Kernel.Logging.Loggers;
+using BindOpen.Kernel.Scoping;
+using System;
+using System.Collections.Generic;
+
+namespace BindOpen.Kernel.Hosting.Settings
+{
+    /// <summary>
+    /// The interface defines the base BDO host options.
+    /// </summary>
+    public interface IBdoHostOptions : IBdoObject
+    {
+        void Update();
+
+        // Root ----------------------
+
+        string RootFolderPath { get; }
+
+        /// <summary>
+        /// The root folder path.
+        /// </summary>
+        List<(Predicate<IBdoHostOptions> Predicate, string Path)> RootFolderPathAssignments { get; set; }
+
+        // Library ----------------------
+
+        string LibraryFolderPath { get; set; }
+
+        // Extensions ----------------------
+
+        /// <summary>
+        /// The extension load options.
+        /// </summary>
+        IExtensionLoadOptions ExtensionLoadOptions { get; set; }
+
+        // Depots ----------------------
+
+        /// <summary>
+        /// The depot sets of this instance.
+        /// </summary>
+        IBdoDepotStore DepotStore { get; set; }
+
+        // Configuration ----------------------
+
+        /// <summary>
+        /// The settings.
+        /// </summary>
+        IBdoSettings Settings { get; set; }
+
+        /// <summary>
+        /// The settings file path of this instance.
+        /// </summary>
+        List<(string Path, bool IsRequired, ConfigurationFileExtenions FileKind)> ConfigurationFiles { get; set; }
+
+        IBdoHostOptions SetSettings(Action<IBdoSettings> action = null);
+
+        IBdoHostOptions SetSettings<T>(Action<T> action = null) where T : class, IBdoSettings, new();
+
+        // Loggers ----------------------
+
+        /// <summary>
+        /// The logger of this instance.
+        /// </summary>
+        public Func<IBdoHost, IBdoLogger> LoggerInit { get; set; }
+
+        // Trigger actions ----------------------
+
+        public List<(HostEventKinds EventKind, Action<IBdoHost> _Action)> EventActions { get; set; }
+    }
+}
