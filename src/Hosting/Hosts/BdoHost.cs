@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Hosting.Settings;
 using BindOpen.Kernel.IO;
@@ -62,12 +63,11 @@ namespace BindOpen.Kernel.Hosting
 
             // we initialize this instance
 
-            var log = BdoLogging.NewLog();
-
-            Initialize(log);
+            Initialize();
 
             //log?.Sanitize();
 
+            var log = Logger?.NewRootLog();
             log?.AddEvent(EventKinds.Message, "Host starting...");
 
             if (_state == ProcessExecutionState.Pending)
@@ -81,6 +81,8 @@ namespace BindOpen.Kernel.Hosting
                 Stop();
                 InitFails();
             }
+
+            Logger?.Log(log);
         }
 
         /// <summary>
@@ -92,7 +94,9 @@ namespace BindOpen.Kernel.Hosting
             _state = ProcessExecutionState.Ended;
             Clear();
 
-            Logger?.Log(BdoLogging.NewLogEvent(EventKinds.Message, q => q.WithDisplayName("Host ended")));
+            var log = Logger?.NewRootLog();
+            log?.AddEvent(EventKinds.Message, q => q.WithTitle("Host ended"));
+            Logger?.Log(log);
         }
 
         // Trigger actions --------------------------------------
@@ -157,7 +161,7 @@ namespace BindOpen.Kernel.Hosting
         /// Initializes information.
         /// </summary>
         /// <returns>Returns the log of the task.</returns>
-        protected virtual bool Initialize(IBdoLog log = null)
+        protected virtual bool Initialize()
         {
             var loaded = true;
 
@@ -167,7 +171,9 @@ namespace BindOpen.Kernel.Hosting
 
             // we set the logger
 
-            log?.WithLogger(Options.LoggerInit?.Invoke(this));
+            Logger = Options.LoggerInit?.Invoke(this);
+
+            var log = Logger?.NewRootLog();
 
             // we launch the standard initialization of service
 
@@ -191,7 +197,9 @@ namespace BindOpen.Kernel.Hosting
                     {
                         foreach (var file in Options.ConfigurationFiles)
                         {
-                            if (!File.Exists(file.Path))
+                            var path = file.Path.GetConcatenatedPath(this.GetKnownPath(BdoHostPathKind.RootFolder));
+
+                            if (!File.Exists(path))
                             {
                                 subLog?.AddEvent(
                                     file.IsRequired ? EventKinds.Error : EventKinds.Warning,
@@ -204,25 +212,20 @@ namespace BindOpen.Kernel.Hosting
 
                                 if (fileExtension == ConfigurationFileExtenions.Any)
                                 {
-                                    switch (Path.GetExtension(file.Path)?.ToLower())
+                                    fileExtension = (Path.GetExtension(path)?.ToLower()) switch
                                     {
-                                        case ".json":
-                                            fileExtension = ConfigurationFileExtenions.Json;
-                                            break;
-                                        case ".xml":
-                                        default:
-                                            fileExtension = ConfigurationFileExtenions.Xml;
-                                            break;
-                                    }
+                                        ".json" => ConfigurationFileExtenions.Json,
+                                        _ => ConfigurationFileExtenions.Xml,
+                                    };
                                 }
 
                                 switch (fileExtension)
                                 {
                                     case ConfigurationFileExtenions.Json:
-                                        configDto = JsonHelper.LoadJson<ConfigurationDto>(file.Path);
+                                        configDto = JsonHelper.LoadJson<ConfigurationDto>(path);
                                         break;
                                     case ConfigurationFileExtenions.Xml:
-                                        configDto = XmlHelper.LoadXml<ConfigurationDto>(file.Path);
+                                        configDto = XmlHelper.LoadXml<ConfigurationDto>(path);
                                         break;
                                 }
 
@@ -283,6 +286,8 @@ namespace BindOpen.Kernel.Hosting
             finally
             {
             }
+
+            Logger?.Log(log);
 
             _state = loaded ? ProcessExecutionState.Pending : ProcessExecutionState.Ended;
 

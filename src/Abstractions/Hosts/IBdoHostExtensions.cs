@@ -62,7 +62,7 @@ namespace BindOpen.Kernel.Hosting
                         path = host.Options?.LibraryFolderPath;
                         if (string.IsNullOrEmpty(path))
                         {
-                            path = host.GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultLibraryFolderPath;
+                            path = BdoDefaultHostPaths.__DefaultLibraryFolderPath.GetConcatenatedPath(host.GetKnownPath(BdoHostPathKind.RootFolder));
                         }
                         break;
                 }

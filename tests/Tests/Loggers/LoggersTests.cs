@@ -1,4 +1,6 @@
-﻿using BindOpen.Kernel.Processing;
+﻿using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Logging.Loggers;
+using BindOpen.Kernel.Processing;
 using NUnit.Framework;
 
 namespace BindOpen.Kernel.Hosting.Loggers
@@ -24,9 +26,8 @@ namespace BindOpen.Kernel.Hosting.Loggers
         public void DefaultConfigurationTest()
         {
             var appHost = BdoHosting.NewHost(
-                //options => options
-                //.SetLogger(BdoLogging.NewLogger<Logger>)
-                );
+                options => options
+                    .SetLogger(q => BdoLogging.NewLogger<BdoTraceLogger>()));
             appHost.Start();
 
             Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
