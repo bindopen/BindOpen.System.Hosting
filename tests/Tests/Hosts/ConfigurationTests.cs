@@ -75,10 +75,10 @@ namespace BindOpen.Kernel.Hosting
         {
             var appHost = BdoHosting.NewHost(
                 options => options
-                    .SetRootFolder(@".\")
+                    .SetRootFolder(@".\bdo\config")
                     .SetSettings<TestSettings>()
-                    .AddConfigurationFile(@".\bdo\config\appconfig.xml", true)
-                    .AddConfigurationFile(@".\bdo\config\appconfig2.xml", true));
+                    .AddConfigurationFile(@".\appconfig.xml", true)
+                    .AddConfigurationFile(@".\appconfig2.xml", true));
             appHost.Start();
 
             var settings = appHost.Options.GetSettings<TestSettings>();

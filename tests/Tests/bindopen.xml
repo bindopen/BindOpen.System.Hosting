@@ -1,4 +1,4 @@
-﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen">
+﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen/kernel">
 
   <scalar name="folderPath">_folderPath</scalar>
   <scalar name="secretKey">_secretKey</scalar>
