@@ -78,7 +78,8 @@ namespace BindOpen.Kernel.Hosting
                     .SetRootFolder(@".\bdo\config")
                     .SetSettings<TestSettings>()
                     .AddConfigurationFile(@".\appconfig.xml", true)
-                    .AddConfigurationFile(@".\appconfig2.xml", true));
+                    .AddConfigurationFile(@".\appconfig2.xml", true)
+                    .ThrowExceptionOnInitFailure());
             appHost.Start();
 
             var settings = appHost.Options.GetSettings<TestSettings>();
