@@ -2,7 +2,6 @@
 using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Hosting.Settings;
-using BindOpen.Kernel.IO;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Logging.Loggers;
 using BindOpen.Kernel.Processing;
@@ -185,22 +184,23 @@ namespace BindOpen.Kernel.Hosting
 
             try
             {
-                if (_state == ProcessExecutionState.Pending)
+                // we load the host config
+
+                childLog = subLog?.InsertChild(EventKinds.Message, "Loading host configuration...");
+
+                Options.Settings ??= BdoData.NewMetaWrapper<BdoHostSettings>(this);
+
+                if (Options?.ConfigurationFiles != null)
                 {
-                    // we load the host config
-
-                    childLog = subLog?.InsertChild(EventKinds.Message, "Loading host configuration...");
-
-                    Options.Settings ??= BdoData.NewMetaWrapper<BdoHostSettings>(this);
-
-                    if (Options?.ConfigurationFiles != null)
+                    foreach (var file in Options.ConfigurationFiles)
                     {
-                        foreach (var file in Options.ConfigurationFiles)
+                        if (loaded)
                         {
                             var path = file.Path.GetConcatenatedPath(this.GetKnownPath(BdoHostPathKind.RootFolder));
 
                             if (!File.Exists(path))
                             {
+                                loaded = false;
                                 subLog?.AddEvent(
                                     file.IsRequired ? EventKinds.Error : EventKinds.Warning,
                                     "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found");
@@ -222,10 +222,10 @@ namespace BindOpen.Kernel.Hosting
                                 switch (fileExtension)
                                 {
                                     case ConfigurationFileExtenions.Json:
-                                        configDto = JsonHelper.LoadJson<ConfigurationDto>(path);
+                                        configDto = JsonHelper.LoadJson<ConfigurationDto>(path, log);
                                         break;
                                     case ConfigurationFileExtenions.Xml:
-                                        configDto = XmlHelper.LoadXml<ConfigurationDto>(path);
+                                        configDto = XmlHelper.LoadXml<ConfigurationDto>(path, log);
                                         break;
                                 }
 
@@ -243,7 +243,7 @@ namespace BindOpen.Kernel.Hosting
                     }
                 }
 
-                if (_state == ProcessExecutionState.Pending)
+                if (loaded)
                 {
                     // we load extensions
 
