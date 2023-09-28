@@ -25,12 +25,12 @@ namespace BindOpen.Kernel.Hosting.Loggers
         [Test]
         public void DefaultConfigurationTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetLogger(q => BdoLogging.NewLogger<BdoTraceLogger>()));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Processing;
+using BindOpen.Kernel.Logging;
 using NUnit.Framework;
 using System.IO;
 
@@ -25,30 +25,30 @@ namespace BindOpen.Kernel.Hosting.Settings
         [Test]
         public void RootFolderTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetRootFolder("rootFolder")
                     .AddRootFolder(s => false, "rootFolderA")
                     .AddRootFolder(s => true, "rootFolderB")
                     .WithLibraryFolder(@".\bdo\lib"));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            var rootFolderPath = appHost.GetKnownPath(BdoHostPathKind.RootFolder);
+            var rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
             Assert.That(rootFolderPath == @"rootFolderB\", "Bad library folder path");
 
-            appHost = BdoHosting.NewHost(
+            bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetRootFolder("rootFolder")
                     .AddRootFolder(s => false, "rootFolderA")
                     .WithLibraryFolder(@".\bdo\lib"));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            rootFolderPath = appHost.GetKnownPath(BdoHostPathKind.RootFolder);
+            rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
             Assert.That(rootFolderPath == @"rootFolder\", "Bad library folder path");
         }
@@ -59,16 +59,16 @@ namespace BindOpen.Kernel.Hosting.Settings
         [Test]
         public void DefaultRootFolderTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetRootFolder(@".\default")
                     .AddRootFolder(s => false, "rootFolderA")
                     .WithLibraryFolder(@".\bdo\lib"));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            var rootFolderPath = appHost.GetKnownPath(BdoHostPathKind.RootFolder);
+            var rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
             var path = Path.Combine(FileHelper.GetAppRootFolderPath(), @"default".ToPath()).EndingWith(@"\");
 
@@ -76,15 +76,15 @@ namespace BindOpen.Kernel.Hosting.Settings
 
             // No root folder set initially
 
-            appHost = BdoHosting.NewHost(
+            bdoHost = BdoHosting.NewHost(
                 options => options
                     .AddRootFolder(s => false, "rootFolderA")
                     .WithLibraryFolder(@".\bdo\lib"));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            rootFolderPath = appHost.GetKnownPath(BdoHostPathKind.RootFolder);
+            rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
             path = FileHelper.GetAppRootFolderPath().EndingWith(@"\");
 
@@ -97,17 +97,17 @@ namespace BindOpen.Kernel.Hosting.Settings
         [Test]
         public void LibraryFolderTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetRootFolder("./")
                     .WithLibraryFolder(@".\bdo\lib"));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Bad library folder path");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Bad library folder path");
 
-            var libraryPath = appHost.GetKnownPath(BdoHostPathKind.LibraryFolder);
+            var libraryPath = bdoHost.GetKnownPath(BdoHostPathKind.LibraryFolder);
 
-            var path = Path.Combine(appHost.GetKnownPath(BdoHostPathKind.RootFolder), @"bdo\lib".ToPath()).EndingWith(@"\");
+            var path = Path.Combine(bdoHost.GetKnownPath(BdoHostPathKind.RootFolder), @"bdo\lib".ToPath()).EndingWith(@"\");
 
             Assert.That(libraryPath == path, "Bad library folder path");
         }

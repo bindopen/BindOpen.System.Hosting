@@ -1,8 +1,7 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Data.Stores;
 using BindOpen.Kernel.Hosting.Tests;
-using BindOpen.Kernel.Processing;
+using BindOpen.Kernel.Logging;
 using NUnit.Framework;
 
 namespace BindOpen.Kernel.Hosting
@@ -44,16 +43,16 @@ namespace BindOpen.Kernel.Hosting
         [Test]
         public void AddFromConnectionStringsTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .AddDepotStore(store => store
                         .RegisterDatasources(m => m
                             .AddFromConnectionStrings(GlobalVariables.NetCoreConfiguration))));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            var datasourceDepot = appHost.GetDatasourceDepot();
+            var datasourceDepot = bdoHost.GetDatasourceDepot();
 
             var datasourceA = datasourceDepot?["db.testA"];
             Assert.That(datasourceA?.Name == "db.testA", "Bad data source loading");
@@ -72,17 +71,18 @@ namespace BindOpen.Kernel.Hosting
         [Test]
         public void AddFromSettingsTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .AddConfigurationFile(@".\bdo\config\appconfig.xml")
+                    .AddConfigurationFile(@".\bdo\config\appconfig2.xml")
                     .AddDepotStore(store => store
                         .RegisterDatasources(m => m
                             .AddFromSettings(options.Settings))));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            var datasourceDepot = appHost.GetDatasourceDepot();
+            var datasourceDepot = bdoHost.GetDatasourceDepot();
 
             var datasourceA = datasourceDepot?["db.testA"];
             Assert.That(datasourceA?.Name == "db.testA", "Bad data source loading");
@@ -93,6 +93,9 @@ namespace BindOpen.Kernel.Hosting
 
             var datasourceB = datasourceDepot?["db.testB"];
             Assert.That(datasourceB?.Name == "db.testB", "Bad data source loading from .NET Core config");
+
+            var datasourceC = datasourceDepot?["db.testC"];
+            Assert.That(datasourceC?.Name == "db.testC", "Bad data source loading from .NET Core config");
         }
     }
 }
