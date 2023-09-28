@@ -8,17 +8,17 @@ namespace BindOpen.Kernel.Hosting.Tests
     public static class GlobalVariables
     {
         static string _workingFolder = null;
-        static IBdoHost _appHost = null;
+        static IBdoHost _bdoHost = null;
         static IConfiguration _netCoreConfiguration;
 
         public static string WorkingFolder
         {
             get
             {
-                string workingFolder = GlobalVariables._workingFolder;
+                string workingFolder = _workingFolder;
                 if (workingFolder == null)
-                    GlobalVariables._workingFolder = workingFolder =
-                        ((_appHost?.GetKnownPath(BdoHostPathKind.RootFolder) ?? AppDomain.CurrentDomain.BaseDirectory)
+                    _workingFolder = workingFolder =
+                        ((_bdoHost?.GetKnownPath(BdoHostPathKind.RootFolder) ?? AppDomain.CurrentDomain.BaseDirectory)
                         .EndingWith(@"\") + @"bdo\temp\").ToPath();
 
                 return workingFolder;
@@ -29,13 +29,13 @@ namespace BindOpen.Kernel.Hosting.Tests
         {
             get
             {
-                _appHost ??= BdoHosting.NewHost(
+                _bdoHost ??= BdoHosting.NewHost(
                     options => options
                         .ThrowExceptionOnInitFailure());
 
-                _appHost?.Start();
+                _bdoHost?.Start();
 
-                return _appHost;
+                return _bdoHost;
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿using BindOpen.Kernel.Hosting.Settings;
+using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Processing;
 using BindOpen.Kernel.Scoping;
 using System;
 

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Hosting.Tests;
-using BindOpen.Kernel.Processing;
+using BindOpen.Kernel.Logging;
 using NUnit.Framework;
 
 namespace BindOpen.Kernel.Hosting
@@ -24,14 +24,14 @@ namespace BindOpen.Kernel.Hosting
         [Test]
         public void DefaultConfigurationTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetSettings(q => q.Kernel.ApplicationInstanceName = "host-test"));
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
 
-            Assert.That(appHost.Options?.Settings?.Kernel?.ApplicationInstanceName == "host-test", "Application host not load failed");
+            Assert.That(bdoHost.Options?.Settings?.Kernel?.ApplicationInstanceName == "host-test", "Application host not load failed");
         }
 
         /// <summary>
@@ -40,13 +40,13 @@ namespace BindOpen.Kernel.Hosting
         [Test]
         public void CastingConfigTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetRootFolder(@".\")
                     .SetSettings<TestSettings>());
-            appHost.Start();
+            bdoHost.Start();
 
-            Assert.That(appHost.Options.Settings is TestSettings, "Application host not load failed");
+            Assert.That(bdoHost.Options.Settings is TestSettings, "Application host not load failed");
         }
 
         /// <summary>
@@ -55,14 +55,14 @@ namespace BindOpen.Kernel.Hosting
         [Test]
         public void KernelConfigFileTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetRootFolder(@".\")
                     .SetSettings<TestSettings>()
                     .AddConfigurationFile());
-            appHost.Start();
+            bdoHost.Start();
 
-            var settings = appHost.Options.GetSettings<TestSettings>();
+            var settings = bdoHost.Options.GetSettings<TestSettings>();
 
             Assert.That(settings.Kernel.ApplicationInstanceName == "host-test", "Application host not load failed");
         }
@@ -73,16 +73,16 @@ namespace BindOpen.Kernel.Hosting
         [Test]
         public void SeveralFilesTest()
         {
-            var appHost = BdoHosting.NewHost(
+            var bdoHost = BdoHosting.NewHost(
                 options => options
                     .SetRootFolder(@".\bdo\config")
                     .SetSettings<TestSettings>()
                     .AddConfigurationFile(@".\appconfig.xml", true)
                     .AddConfigurationFile(@".\appconfig2.xml", true)
                     .ThrowExceptionOnInitFailure());
-            appHost.Start();
+            bdoHost.Start();
 
-            var settings = appHost.Options.GetSettings<TestSettings>();
+            var settings = bdoHost.Options.GetSettings<TestSettings>();
 
             Assert.That(settings.FolderPath == "_folderPath", "Application host not load failed");
             Assert.That(settings.NewsUris.Count == 2, "Application host not load failed");
