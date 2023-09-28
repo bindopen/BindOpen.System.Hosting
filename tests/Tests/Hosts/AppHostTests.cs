@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Hosting.Tests;
-using BindOpen.Kernel.Processing;
+using BindOpen.Kernel.Logging;
 using NUnit.Framework;
 
 namespace BindOpen.Kernel.Hosting
@@ -33,10 +33,10 @@ namespace BindOpen.Kernel.Hosting
         [Test]
         public void TestAppHostWithNoOptions()
         {
-            var appHost = BdoHosting.NewHost();
-            appHost.Start();
+            var bdoHost = BdoHosting.NewHost();
+            bdoHost.Start();
 
-            Assert.That(appHost.State == ProcessExecutionState.Pending, "Application host not load failed");
+            Assert.That(bdoHost.State == ProcessExecutionState.Pending, "Application host not load failed");
         }
     }
 }

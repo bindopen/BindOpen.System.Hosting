@@ -5,4 +5,11 @@
     <scalar name="releases">releasesA</scalar>
   </node>
 
+  <config name="$datasources">
+    <node name="db.testC" definition="database.mssqlserver$client">
+      <scalar name="datasourceKind">Database</scalar>
+      <scalar name="connectionString">connectionString_test2</scalar>
+    </node>
+  </config>
+
 </config>
