@@ -69,6 +69,7 @@ namespace BindOpen.Kernel.Data.Stores
 
                         var source = depot.Scope.NewMetaWrapper<BdoDatasource>(set);
                         source.WithName(childMeta.Name);
+                        source.WithDataType(childMeta.DataType);
                         depot.Add(source);
                     }
                 }
