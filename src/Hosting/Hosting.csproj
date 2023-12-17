@@ -39,11 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.122" />
-    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.43" />
-    <PackageReference Include="BindOpen.Kernel.Scoping" Version="1.2.122" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.139" />
+    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.45" />
+    <PackageReference Include="BindOpen.Kernel.Scoping" Version="1.2.139" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>

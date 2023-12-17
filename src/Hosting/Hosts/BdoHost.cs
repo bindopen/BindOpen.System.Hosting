@@ -199,7 +199,7 @@ namespace BindOpen.Kernel.Hosting
 
                             if (!File.Exists(path))
                             {
-                                loaded = false;
+                                loaded &= !file.IsRequired;
                                 subLog?.AddEvent(
                                     file.IsRequired ? EventKinds.Error : EventKinds.Warning,
                                     "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found");
