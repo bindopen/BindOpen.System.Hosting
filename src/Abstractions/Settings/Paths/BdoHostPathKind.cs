@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Hosting.Settings
+﻿namespace BindOpen.Hosting.Settings
 {
     /// <summary>
     /// This enumeration lists all the possible kinds of host path.

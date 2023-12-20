@@ -1,9 +1,8 @@
-﻿using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Processing;
+﻿using BindOpen.Logging;
+using BindOpen.Logging.Loggers;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Hosting.Loggers
+namespace BindOpen.Hosting.Loggers
 {
     /// <summary>
     /// 
