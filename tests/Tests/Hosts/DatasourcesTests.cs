@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Stores;
-using BindOpen.Kernel.Hosting.Tests;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Data.Stores;
+using BindOpen.Hosting.Tests;
+using BindOpen.Logging;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Hosting
+namespace BindOpen.Hosting
 {
     /// <summary>
     /// 

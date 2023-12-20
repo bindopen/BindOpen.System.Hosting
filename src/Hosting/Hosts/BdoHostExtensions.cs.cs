@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Hosting.Settings;
+﻿using BindOpen.Data;
+using BindOpen.Hosting.Settings;
 using System;
 
-namespace BindOpen.Kernel.Hosting
+namespace BindOpen.Hosting
 {
     /// <summary>
     /// This class represents a host.

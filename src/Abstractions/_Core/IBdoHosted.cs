@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Hosting;
+﻿using BindOpen.Hosting;
 
-namespace BindOpen.Kernel.Hosting
+namespace BindOpen.Hosting
 {
     /// <summary>
     /// The interface defines a hosted item.

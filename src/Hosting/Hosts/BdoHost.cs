@@ -1,15 +1,15 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Hosting.Settings;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
+using BindOpen.Hosting.Settings;
+using BindOpen.Logging;
+using BindOpen.Logging.Loggers;
+using BindOpen.Scoping;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Kernel.Hosting
+namespace BindOpen.Hosting
 {
     /// <summary>
     /// This class represents a host.
@@ -199,7 +199,7 @@ namespace BindOpen.Kernel.Hosting
 
                             if (!File.Exists(path))
                             {
-                                loaded = false;
+                                loaded &= !file.IsRequired;
                                 subLog?.AddEvent(
                                     file.IsRequired ? EventKinds.Error : EventKinds.Warning,
                                     "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found");

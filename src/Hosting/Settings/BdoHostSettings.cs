@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Hosting.Settings
+namespace BindOpen.Hosting.Settings
 {
     /// <summary>
     /// This class represents a BindOpen host settings.

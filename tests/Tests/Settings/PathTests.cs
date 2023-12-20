@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Logging;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Hosting.Settings
+namespace BindOpen.Hosting.Settings
 {
     /// <summary>
     /// 

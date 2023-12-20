@@ -9,7 +9,7 @@
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles runtime.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Hosting</RootNamespace>
+    <RootNamespace>BindOpen.Hosting</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -39,11 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.122" />
-    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.43" />
-    <PackageReference Include="BindOpen.Kernel.Scoping" Version="1.2.122" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.142" />
+    <PackageReference Include="BindOpen.Kernel.Scoping" Version="1.2.142" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
