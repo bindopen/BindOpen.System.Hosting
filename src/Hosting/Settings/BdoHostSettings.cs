@@ -6,7 +6,7 @@ namespace BindOpen.Hosting.Settings
     /// This class represents a BindOpen host settings.
     /// </summary>
     public class BdoHostSettings : TBdoMetaWrapper<BdoConfiguration>, IBdoSettings
-    {
+    {        
         // -------------------------------------------------------
         // PROPERTIES
         // -------------------------------------------------------
