@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Hosting.Settings;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Hosting.Settings;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Stores
+namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// This class represents an data source extensions.

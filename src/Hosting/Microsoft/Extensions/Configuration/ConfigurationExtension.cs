@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Logging;
+using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping;
 using System;
 
 namespace Microsoft.Extensions.Configuration

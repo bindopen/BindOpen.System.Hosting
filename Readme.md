@@ -1,4 +1,4 @@
-# BindOpen.Kernel.Hosting
+# BindOpen.Hosting
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
@@ -9,16 +9,16 @@ BindOpen is a framework that enables the development of highly extensible applic
 
 ## About
 
-BindOpen.Kernel.Hosting provides full integration of BindOpen to the .NET standard configuration and dependency injection mechanisms.
+BindOpen.Hosting provides full integration of BindOpen to the .NET standard configuration and dependency injection mechanisms.
 
-This repository contains the BindOpen.Kernel.Hosting code source.
+This repository contains the BindOpen.Hosting code source.
 
 A [full list of all the BindOpen.Kernel repos](https://www.nuget.org/packages?q=bindopen.kernel) is available as well.
 
 
 ## Install
 
-To get started, install the BindOpen.Kernel.Hosting module you want to use.
+To get started, install the BindOpen.Hosting module you want to use.
 
 Note: We recommend that later on, you install only the package you need.
 
@@ -26,26 +26,26 @@ Note: We recommend that later on, you install only the package you need.
 
 | Module | Instruction |
 |--------|-----|
-| [BindOpen.Kernel.Hosting](https://www.nuget.org/packages/BindOpen.Kernel.Hosting) | ```PM> Install-Package BindOpen.Kernel.Hosting``` |
+| [BindOpen.Hosting](https://www.nuget.org/packages/BindOpen.Hosting) | ```PM> Install-Package BindOpen.Hosting``` |
 
 ### From .NET CLI
 
 | Module | Instruction |
 |--------|-----|
-| [BindOpen.Kernel.Hosting](https://www.nuget.org/packages/BindOpen.Kernel.Hosting) | ```> dotnet add package BindOpen.Kernel.Hosting``` |
+| [BindOpen.Hosting](https://www.nuget.org/packages/BindOpen.Hosting) | ```> dotnet add package BindOpen.Hosting``` |
 
 ## License
 
-This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Kernel.Hosting/blob/master/LICENSE).
+This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Hosting/blob/master/LICENSE).
 
 ## Packages
 
-This BindOpen.Kernel.Hosting module contains the following Nuget packages:
+This BindOpen.Hosting module contains the following Nuget packages:
 
 | Package | Provision |
 |----------|-----|
-| [BindOpen.Kernel.Hosting.Abstractions](https://www.nuget.org/packages/BindOpen.Kernel.Hosting.Abstractions) | Interfaces and enumerations |
-| [BindOpen.Kernel.Hosting](https://www.nuget.org/packages/BindOpen.Kernel.Data) | Core package |
+| [BindOpen.Hosting.Abstractions](https://www.nuget.org/packages/BindOpen.Hosting.Abstractions) | Interfaces and enumerations |
+| [BindOpen.Hosting](https://www.nuget.org/packages/BindOpen.Data) | Core package |
 
 The atomicity of these packages allows you install only what you need respecting your solution's architecture.
 
@@ -56,7 +56,7 @@ All of our NuGet packages are available from [our NuGet.org profile page](https:
 
 [BindOpen.Kernel](https://github.com/bindopen/BindOpen.Kernel) provides the core packages of BindOpen.
 
-[BindOpen.Kernel.Logging](https://github.com/bindopen/BindOpen.Kernel.Logging) provides a simple and multidimensional logging system, perfect to monitor nested task executions.
+[BindOpen.Logging](https://github.com/bindopen/BindOpen.Logging) provides a simple and multidimensional logging system, perfect to monitor nested task executions.
 
 [BindOpen.Labs](https://github.com/bindopen/BindOpen.Labs) is a collection of projects based on BindOpen.Kernel.
 

@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Hosting.Settings
+﻿namespace BindOpen.Hosting.Settings
 {
     public interface IBdoHostKernelSettings
     {
