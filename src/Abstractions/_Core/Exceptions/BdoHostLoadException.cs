@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Hosting
+namespace BindOpen.Hosting
 {
     /// <summary>
     /// This static class lists the BindOpen host load exceptions.

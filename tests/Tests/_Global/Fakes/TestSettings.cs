@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Hosting.Settings;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Hosting.Settings;
 
-namespace BindOpen.Kernel.Hosting.Tests
+namespace BindOpen.Hosting.Tests
 {
     /// <summary>
     /// This class represents a website application settings.

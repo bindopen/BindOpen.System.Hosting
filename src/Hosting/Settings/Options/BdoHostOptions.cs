@@ -1,13 +1,13 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Stores;
-using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
+using BindOpen.Data.Stores;
+using BindOpen.Logging.Loggers;
+using BindOpen.Scoping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Hosting.Settings
+namespace BindOpen.Hosting.Settings
 {
     /// <summary>
     /// This class represents a host options.

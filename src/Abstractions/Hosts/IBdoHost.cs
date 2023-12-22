@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Hosting.Settings;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Hosting.Settings;
+using BindOpen.Logging;
+using BindOpen.Logging.Loggers;
+using BindOpen.Scoping;
 using System;
 
-namespace BindOpen.Kernel.Hosting
+namespace BindOpen.Hosting
 {
     /// <summary>
     /// The interface defines the base bot.
