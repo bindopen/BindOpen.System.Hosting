@@ -6,7 +6,7 @@
     <PackageId>BindOpen.Kernel.Hosting.Abstractions</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
+    <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles runtime.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Hosting</RootNamespace>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.48" />
+    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.51" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
