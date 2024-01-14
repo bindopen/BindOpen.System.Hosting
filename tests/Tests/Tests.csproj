@@ -6,7 +6,7 @@
     <PackageId>BindOpen.Kernel.Hosting.Tests</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
+    <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Runtime libraries.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Kernel.Tests.Runtime</RootNamespace>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Logging" Version="1.2.47" />
+    <PackageReference Include="BindOpen.Kernel.Logging" Version="1.2.51" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
