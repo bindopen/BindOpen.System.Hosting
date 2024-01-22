@@ -1,5 +1,5 @@
-BindOpen.Scoping
-Copyright (c) 2022 BindOpen
+BindOpen.Hosting
+Copyright (c) 2024 BindOpen
 
 This product includes software developed at
 The BindOpen Labs (https://www.bindopen.org).
@@ -12,18 +12,25 @@ specific files and/or packages for more detailed information about the authors,
 copyright notices, and licenses.
 
 
-Newtonsoft.Json
----------------
-Website:      https://www.newtonsoft.com/json
-Copyright:    Copyright (c) 2007 James Newton-King
+Automapper
+----------
+Website:      https://automapper.org/
+Copyright:    Copyright (c) 2010 Jimmy Bogard
 License:      The MIT License (MIT)
 
 
-Npgsql
-------
-Website:      http://www.npgsql.org
-Copyright:    Copyright (c) 2002-2019, Npgsql
-License:      PostgreSQL License
+Bogus
+-----
+Website:      https://github.com/bchavez/Bogus
+Copyright:    Copyright (c) 2015 Brian Chavez 
+License:      The MIT License (MIT)
+
+
+DeepEqual
+---------
+Website:      https://github.com/jamesfoster/DeepEqual
+Copyright:    Copyright (c) 2014 James Foster
+License:      The MIT License (MIT)
 
 
 NUnit
