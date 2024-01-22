@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.Kernel.Hosting</AssemblyName>
-    <PackageId>BindOpen.Kernel.Hosting</PackageId>
+    <AssemblyName>BindOpen.Hosting</AssemblyName>
+    <PackageId>BindOpen.Hosting</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
@@ -11,7 +11,7 @@
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Hosting</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Hosting.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Hosting.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,8 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.163" />
-    <PackageReference Include="BindOpen.Kernel.Scoping" Version="1.2.163" />
+    <PackageReference Include="BindOpen.IO" Version="1.2.164" />
+    <PackageReference Include="BindOpen.Scoping" Version="1.2.164" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
   </ItemGroup>

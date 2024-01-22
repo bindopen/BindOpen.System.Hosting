@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.Kernel.Hosting.Abstractions</AssemblyName>
-    <PackageId>BindOpen.Kernel.Hosting.Abstractions</PackageId>
+    <AssemblyName>BindOpen.Hosting.Abstractions</AssemblyName>
+    <PackageId>BindOpen.Hosting.Abstractions</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
@@ -11,7 +11,7 @@
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Hosting</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Hosting.Abstractions.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Hosting.Abstractions.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Logging.Abstractions" Version="1.2.52" />
+    <PackageReference Include="BindOpen.Logging.Abstractions" Version="1.2.53" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>

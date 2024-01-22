@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.Kernel.Hosting.Tests</AssemblyName>
-    <PackageId>BindOpen.Kernel.Hosting.Tests</PackageId>
+    <AssemblyName>BindOpen.Hosting.Tests</AssemblyName>
+    <PackageId>BindOpen.Hosting.Tests</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Runtime libraries.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Tests.Runtime</RootNamespace>
+    <RootNamespace>BindOpen.Tests.Runtime</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Hosting.Tests.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Hosting.Tests.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Logging" Version="1.2.52" />
+    <PackageReference Include="BindOpen.Logging" Version="1.2.53" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
