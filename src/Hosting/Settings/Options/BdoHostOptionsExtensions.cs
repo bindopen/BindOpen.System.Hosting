@@ -68,7 +68,7 @@ namespace BindOpen.Hosting
         {
             if (options != null)
             {
-                options.ConfigurationFiles ??= new();
+                options.ConfigurationFiles ??= [];
                 options.ConfigurationFiles.Add((path, isRequired, extension));
             }
 
@@ -104,7 +104,7 @@ namespace BindOpen.Hosting
         {
             if (options != null)
             {
-                options.EventActions ??= new();
+                options.EventActions ??= [];
                 options.EventActions.Add((HostEventKinds.OnInitSuccess, action));
             }
 

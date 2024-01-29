@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>BindOpen.Hosting.Tests</AssemblyName>
     <PackageId>BindOpen.Hosting.Tests</PackageId>
     <Product>BindOpen.Kernel</Product>
@@ -16,7 +16,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
     <PackageIconUrl>https://storage.bindopen.org/img/icons/bindopen_icon_64x64.png</PackageIconUrl>
-    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -32,14 +32,14 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\Readme.md">
+    <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Logging" Version="1.2.53" />
+    <PackageReference Include="BindOpen.Logging" Version="1.2.55" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />

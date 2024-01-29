@@ -37,7 +37,7 @@ namespace BindOpen.Hosting.Settings
 
             var rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
-            Assert.That(rootFolderPath == @"rootFolderB\", "Bad library folder path");
+            Assert.That(rootFolderPath == @"rootFolderB\".ToPath(), "Bad library folder path");
 
             bdoHost = BdoHosting.NewHost(
                 options => options
@@ -50,7 +50,7 @@ namespace BindOpen.Hosting.Settings
 
             rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
-            Assert.That(rootFolderPath == @"rootFolder\", "Bad library folder path");
+            Assert.That(rootFolderPath == @"rootFolder\".ToPath(), "Bad library folder path");
         }
 
         /// <summary>
