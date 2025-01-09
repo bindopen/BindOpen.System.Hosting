@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Logging" Version="1.2.56" />
+    <PackageReference Include="BindOpen.Logging" Version="1.2.57" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
