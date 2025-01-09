@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>BindOpen.Hosting.Abstractions</AssemblyName>
     <PackageId>BindOpen.Hosting.Abstractions</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
+    <Copyright>Copyright © BindOpen 2011-2025</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles runtime.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Hosting</RootNamespace>
@@ -39,8 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Logging.Abstractions" Version="1.2.55" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="BindOpen.Logging.Abstractions" Version="1.2.57" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
   </ItemGroup>
 </Project>
